@@ -4,9 +4,9 @@ import { browserHistory} from 'react-router'
 const URL='http://localhost:3000/api/v1'
 
 export const createUser = (user) => {
-	const response = axios.post( URL + 'signup', user).then( (response) => {
+	const response = axios.post( URL + '/signup', user).then( (response) => {
 			sessionStorage.setItem('jwt', response.data.jwt)
-			browserHistory.push('/parties')
+			// browserHistory.push('/parties')
 			return response
 	})
 
@@ -18,7 +18,15 @@ export const createUser = (user) => {
 }
 
 
-// .then((userData) => { sessionStorage.setItem({'jwt', userData.data.jwt})
-// 		browserHistory.push('/parties')
-// 		return userData
-// 	})
+export function getUser (){
+	var config = {
+		headers: {'Authorization': sessionStorage.getItem('jwt')}
+	}
+	const response = axios.get( URL +'/users' , config)
+
+	return{
+		type: 'GET_USER',
+		payload: response
+	}
+}
+

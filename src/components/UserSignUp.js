@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
-import { createUser } from '../actions/index'
+import { createUser, getUser } from '../actions/index'
 import { connect } from 'react-redux'
 
 class UserSignUp extends Component {
@@ -14,7 +14,8 @@ class UserSignUp extends Component {
 		event.preventDefault()
 
 		const user = {name: this.refs.name.value, email: this.refs.email.value, password: this.refs.userPassword.value, password_confirmation: this.refs.passwordConfirmation.value}
-		this.props.createUser(user)
+		// this.props.createUser(user)
+		this.props.getUser()
 	}
 
 	render(){
@@ -35,7 +36,7 @@ class UserSignUp extends Component {
 }
 
 const mapDispatchToProps = (dispatch) => {
-	return bindActionCreators({createUser}, dispatch )
+	return bindActionCreators({createUser, getUser}, dispatch )
 }
 
 export default connect(null, mapDispatchToProps)(UserSignUp)
