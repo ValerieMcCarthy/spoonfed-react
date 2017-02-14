@@ -3,6 +3,17 @@ import { browserHistory} from 'react-router'
 
 const URL='http://localhost:3000/api/v1'
 
+export const fetchTemplates = () => {
+	const response = axios.get( URL + '/party_templates')
+		.then( ( response ) => response.data )
+	debugger
+	return {
+		type: 'FETCH_TEMPLATES',
+		payload: response
+	}
+
+}
+
 export const createUser = (user) => {
 	const response = axios.post( URL + '/signup', user).then( (response) => {
 			sessionStorage.setItem('jwt', response.data.jwt)
