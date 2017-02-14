@@ -30,3 +30,41 @@ export function getUser (){
 	}
 }
 
+export function loginUser(user){
+	return (dispatch) => {
+		axios.post( URL + '/login', user).then( response => dispatch(succesfulLogin(response)))
+			.catch( (err) => dispatch(badLogIn(err)))
+		}
+}
+
+function succesfulLogin(response){
+	return {
+		type: 'LOGIN_USER',
+		payload: response
+	}
+}
+
+function badLogIn(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Error. Bad Error.' 
+	}
+}
+
+	// const response = axios.post( URL + '/login', user).then( (response) => {
+	// 		sessionStorage.setItem('jwt', response.data.jwt)
+	// 		return {
+	// 			type: 'LOGIN_USER',
+	// 			payload: response
+	// 		}
+	// 	}).catch(function () {
+	// 	console.log(error)
+	// 	return {
+	// 		type: 'ERROR_MESSAGE',
+	// 		payload: "error"
+	// 	}
+	// })
+
+
+
+// }

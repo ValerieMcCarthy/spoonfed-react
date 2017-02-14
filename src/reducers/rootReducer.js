@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux'
 import usersReducer from './usersReducer'
+import errorsReducer from './errorsReducer'
 
-debugger
 
 export default combineReducers({
 
-	users: usersReducer
+	users: usersReducer,
+	errors: errorsReducer
 })

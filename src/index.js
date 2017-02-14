@@ -6,12 +6,14 @@ import routes from './routes'
 import rootReducer from './reducers/rootReducer'
 import { Provider } from 'react-redux'
 import ReduxPromise from 'redux-promise'
+import ReduxThunk from 'redux-thunk'
 import { Router, browserHistory } from 'react-router'
 import { createStore, applyMiddleware } from 'redux'
+import App from './components/App'
 
 
 
-const store = createStore(rootReducer, applyMiddleware(ReduxPromise))
+const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 ReactDOM.render(
 	<Provider store={store} >
