@@ -15,7 +15,6 @@ class UserLogin extends Component {
 		event.preventDefault()
 
 		const user = {email: this.refs.email.value, password: this.refs.userPassword.value}
-		// this.props.createUser(user)
 		this.props.loginUser(user)
 	}
 

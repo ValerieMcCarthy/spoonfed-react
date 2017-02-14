@@ -14,8 +14,7 @@ class UserSignUp extends Component {
 		event.preventDefault()
 
 		const user = {name: this.refs.name.value, email: this.refs.email.value, password: this.refs.userPassword.value, password_confirmation: this.refs.passwordConfirmation.value}
-		// this.props.createUser(user)
-		this.props.getUser()
+		this.props.createUser(user)
 	}
 
 	render(){

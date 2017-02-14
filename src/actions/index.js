@@ -3,31 +3,34 @@ import { browserHistory} from 'react-router'
 
 const URL='http://localhost:3000/api/v1'
 
+// export const fetchTemplates = () => {
+// 	return(dispatch) => {
+// 		axios.get(URL + '/party_templates').then((response) => (dispatch((response) => return{type:'FETCH_TEMPLATES', payload: response.data})))
+// 	}
+// }
+
+
 export const fetchTemplates = () => {
-	const response = axios.get( URL + '/party_templates')
-		.then( ( response ) => response.data )
-	debugger
-	return {
+	return (dispatch) => {
+		axios.get( URL + '/party_templates').then( (response) => 
+			(dispatch(successfulFetch(response.data))))
+	}}
+
+function successfulFetch(response){
+	return{
 		type: 'FETCH_TEMPLATES',
 		payload: response
 	}
-
 }
+
 
 export const createUser = (user) => {
-	const response = axios.post( URL + '/signup', user).then( (response) => {
-			sessionStorage.setItem('jwt', response.data.jwt)
-			// browserHistory.push('/parties')
-			return response
-	})
-
-
-	return {
-		type: 'CREATE_USER',
-		payload: response
-	}
-}
-
+	return (dispatch) => {
+		axios.post( URL + '/signup', user).then( (response) => 
+			(sessionStorage.setItem('jwt', response.data.jwt),
+			dispatch(successfulLogin(response)),
+			browserHistory.push('/party-template-list'))).catch((err)=> dispatch(badLogIn(err)))
+	}}
 
 export function getUser (){
 	var config = {
@@ -42,13 +45,15 @@ export function getUser (){
 }
 
 export function loginUser(user){
+	debugger
 	return (dispatch) => {
-		axios.post( URL + '/login', user).then( response => dispatch(succesfulLogin(response)))
+		axios.post( URL + '/login', user).then( response => (sessionStorage.setItem('jwt', response.data.jwt),dispatch(successfulLogin(response)),
+			browserHistory.push('/party-template-list')))
 			.catch( (err) => dispatch(badLogIn(err)))
 		}
 }
 
-function succesfulLogin(response){
+function successfulLogin(response){
 	return {
 		type: 'LOGIN_USER',
 		payload: response

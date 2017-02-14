@@ -14,16 +14,16 @@ class PartyTemplateList extends React.Component{
   }
 
   render(){
-    debugger
-    const templates = this.props.partyTemplates
     
+    const templates = this.props.partyTemplates
+    debugger
     return(
       <ul>
         <h2> All the delightful parties you could be throwing</h2>
         { templates.map( (template, index) => { return (
           <li key={index} onClick={this.showTemplate.bind(this, template.id )}> 
             < Link to={`/party-templates/${template.id}`} >
-              { template.name }
+              { template.title }
             </ Link >
           </li> 
         )
