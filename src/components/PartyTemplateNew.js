@@ -8,8 +8,18 @@ import { addTemplate } from '../actions'
 
 
 class PartyTemplateNew extends React.Component{
-  constructor(){
-    super()
+  constructor(props){
+    debugger
+    super(props)
+    if (props.template){
+      this.state = {
+       title: props.template.title,
+       description: props.template.description,
+       theme_category: props.template.theme_category,
+       min_age: props.template.min_age,
+       max_age: props.template.max_age,
+      }
+    } else {
     this.state = {
       title: '',
       description: '',
@@ -18,6 +28,7 @@ class PartyTemplateNew extends React.Component{
       max_age: '',
     }
   }
+ }
 
   handleSubmit(event){
     event.preventDefault()
