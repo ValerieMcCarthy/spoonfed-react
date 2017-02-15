@@ -20,11 +20,12 @@ class NavBar extends React.Component {
     <div className="nav-wrapper padding red lighten-1">
       <a href="#" className="brand-logo">SpoonFed</a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
-        {this.props.session ? <div>
-      <li><a href="/login" onClick={this.handleSignOut.bind(this)}>Logout</a></li> <li><a href="collapsible.html">Profile</a></li>
-      </div> : <div>
+      <li><a href="/parties">Party Templates</a> </li>
+        {this.props.session ? <span>
+      <li><a href="collapsible.html">Profile</a></li><li><a href="/login" onClick={this.handleSignOut.bind(this)}>Logout</a></li> 
+      </span> : <span>
       <li><a href="/signup">Signup</a></li> <li><a href="/login">Login</a></li>
-    </div>}
+    </span>}
       </ul>
     </div>
   </nav>

@@ -21,7 +21,7 @@ class PartyTemplateList extends React.Component{
       <div>
 
         <h3 className='center'> Delightful parties you could be throwing</h3>
-      }
+      
       <div className="row">
         { templates.map( (template, index) => {
       return (
