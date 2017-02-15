@@ -20,10 +20,17 @@ class UserLogin extends Component {
 
 	render(){
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit} >
-					<input ref='email' placeholder='Enter Email'/>
-					<input type='password' ref='userPassword' placeholder="Enter Password"/>
+			<div className='row'>
+			<h4 className='center'> Please enter your login information here:</h4>
+				<form className='col s12' onSubmit={this.handleSubmit} >
+				<div className='row'>
+					<div className="input-field col s6">
+						<input ref='email' placeholder='Enter Email'/>
+					</div>
+					<div className="input-field col s6">
+						<input type='password' ref='userPassword' placeholder="Enter Password"/>
+					</div>
+					</div>
 					<button type='submit'> Submit </button>
 				</form>
 			</div>

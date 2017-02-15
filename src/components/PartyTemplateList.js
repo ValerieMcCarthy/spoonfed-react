@@ -16,24 +16,41 @@ class PartyTemplateList extends React.Component{
   render(){
     
     const templates = this.props.partyTemplates
-    debugger
+    
     return(
-      <ul>
-        <h2> All the delightful parties you could be throwing</h2>
-        { templates.map( (template, index) => { return (
-          <li key={index} onClick={this.showTemplate.bind(this, template.id )}> 
-            < Link to={`/party-templates/${template.id}`} >
-              { template.title }
+      <div>
+        <h3 className='center'> Delightful parties you could be throwing</h3>
+      <div className="row">
+        { templates.map( (template, index) => {
+      return (
+      
+        <div className="col s4">
+          <div className="card purple darken-2">
+            <div className="card-content white-text">
+              <span className="card-title">{template.title}</span>
+              <p>{template.description}</p>
+              <br/>
+              <p>Category: {template.theme_category}</p>
+            </div>
+            <div className="card-action">
+              < Link to={`/party-templates/${template.id}`} >
+              Learn More
             </ Link >
-          </li> 
-        )
-        })}
-      </ul>
+              <a href="#"></a>
+            </div>
+          </div>
+        </div> )} )}
+      </div>
+     
+       
+      </div>
       )
   }
-
-  
+ 
 }
+
+
+ 
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ fetchTemplates }, dispatch )  

@@ -19,12 +19,23 @@ class UserSignUp extends Component {
 
 	render(){
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit} >
+			<div className='row'>
+			<h4 className='center'> Please create your new account here:</h4>
+				<form className='col s12' onSubmit={this.handleSubmit} >
+				<div className='row'>
+					<div className="input-field col s6">
 					<input ref='name' placeholder='Enter Name'/>
+					</div>
+					<div className="input-field col s6">
 					<input ref='email' placeholder='Enter Email'/>
+					</div>
+					<div className="input-field col s6">
 					<input type='password' ref='userPassword' placeholder="Enter Password"/>
+					</div>
+					<div className="input-field col s6">
 					<input type='password' ref='passwordConfirmation' placeholder="Confirm Password"/>
+					</div>
+					</div>
 					<button type='submit'> Submit </button>
 				</form>
 			</div>

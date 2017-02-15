@@ -45,7 +45,7 @@ export function getUser (){
 }
 
 export function loginUser(user){
-	debugger
+	
 	return (dispatch) => {
 		axios.post( URL + '/login', user).then( response => (sessionStorage.setItem('jwt', response.data.jwt),dispatch(successfulLogin(response)),
 			browserHistory.push('/party-template-list')))
