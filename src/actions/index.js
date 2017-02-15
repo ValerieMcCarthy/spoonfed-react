@@ -12,7 +12,7 @@ const URL='http://localhost:3000/api/v1'
 
 export const fetchTemplates = () => {
 	return (dispatch) => {
-		axios.get( URL + '/party_templates').then( (response) => 
+		axios.get( URL + '/party_templates').then( (response) =>
 			(dispatch(successfulFetch(response.data))))
 	}}
 
@@ -26,7 +26,7 @@ function successfulFetch(response){
 
 export const createUser = (user) => {
 	return (dispatch) => {
-		axios.post( URL + '/signup', user).then( (response) => 
+		axios.post( URL + '/signup', user).then( (response) =>
 			(sessionStorage.setItem('jwt', response.data.jwt),
 			dispatch(successfulLogin(response)),
 			browserHistory.push('/party-template-list'))).catch((err)=> dispatch(badLogIn(err)))
@@ -45,7 +45,7 @@ export function getUser (){
 }
 
 export function loginUser(user){
-	
+
 	return (dispatch) => {
 		axios.post( URL + '/login', user).then( response => (sessionStorage.setItem('jwt', response.data.jwt),dispatch(successfulLogin(response)),
 			browserHistory.push('/party-template-list')))
@@ -60,10 +60,29 @@ function successfulLogin(response){
 	}
 }
 
+export function checkSession(){
+	if (sessionStorage.jwt){
+		return {
+			type: 'SESSION_VERIFY'
+		}
+	} else {
+		return {
+		}
+	}
+}
+
 function badLogIn(err){
 	return {
 		type: 'ERROR_MESSAGE',
-		payload: 'Error. Bad Error.' 
+		payload: 'Error. Bad Error.'
+	}
+}
+
+export function logoutUser(){
+	debugger
+	sessionStorage.clear()
+	return {
+		type: 'LOGOUT_USER',
 	}
 }
 
