@@ -19,7 +19,9 @@ class PartyTemplateList extends React.Component{
     
     return(
       <div>
+
         <h3 className='center'> Delightful parties you could be throwing</h3>
+      
       <div className="row">
         { templates.map( (template, index) => {
       return (
@@ -33,7 +35,7 @@ class PartyTemplateList extends React.Component{
               <p>Category: {template.theme_category}</p>
             </div>
             <div className="card-action">
-              < Link to={`/party-templates/${template.id}`} >
+              < Link to={`/parties/${template.id}`} >
               Learn More
             </ Link >
               <a href="#"></a>
@@ -42,7 +44,7 @@ class PartyTemplateList extends React.Component{
         </div> )} )}
       </div>
      
-       
+       {this.props.children}
       </div>
       )
   }
