@@ -29,7 +29,7 @@ export const createUser = (user) => {
 		axios.post( URL + '/signup', user).then( (response) =>
 			(sessionStorage.setItem('jwt', response.data.jwt),
 			dispatch(successfulLogin(response)),
-			browserHistory.push('/party-template-list'))).catch((err)=> dispatch(badLogIn(err)))
+			browserHistory.push('/parties'))).catch((err)=> dispatch(badLogIn(err)))
 	}}
 
 export function getUser (){
@@ -48,7 +48,7 @@ export function loginUser(user){
 
 	return (dispatch) => {
 		axios.post( URL + '/login', user).then( response => (sessionStorage.setItem('jwt', response.data.jwt),dispatch(successfulLogin(response)),
-			browserHistory.push('/party-template-list')))
+			browserHistory.push('/parties')))
 			.catch( (err) => dispatch(badLogIn(err)))
 		}
 }
@@ -67,6 +67,7 @@ export function checkSession(){
 		}
 	} else {
 		return {
+			type: 'Ignore'
 		}
 	}
 }
