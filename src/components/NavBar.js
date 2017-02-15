@@ -22,7 +22,7 @@ class NavBar extends React.Component {
       <ul id="nav-mobile" className="right hide-on-med-and-down">
       <li><a href="/parties">Party Templates</a> </li>
         {this.props.session ? <span>
-      <li><a href="collapsible.html">Profile</a></li><li><a href="/login" onClick={this.handleSignOut.bind(this)}>Logout</a></li> 
+      <li><a href={`/users/${sessionStorage.getItem('id')}`}>Profile</a></li><li><a href="/login" onClick={this.handleSignOut.bind(this)}>Logout</a></li>
       </span> : <span>
       <li><a href="/signup">Signup</a></li> <li><a href="/login">Login</a></li>
     </span>}
@@ -39,7 +39,8 @@ function mapDispatchToProps(dispatch){
 
 function mapStateToProps(state){
   return {
-    session: state.session
+    session: state.session,
+    user_id: state.user
   }
 }
 

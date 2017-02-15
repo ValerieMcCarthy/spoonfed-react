@@ -8,7 +8,7 @@ import currentPartyTemplateReducer from './currentPartyTemplateReducer'
 
 export default combineReducers({
   partyTemplates: partyTemplateReducer,
-	users: usersReducer,
+	user: usersReducer,
 	errors: errorsReducer,
   session: sessionsReducer,
   currentPartyTemplateID: currentPartyTemplateReducer
