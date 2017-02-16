@@ -11,5 +11,5 @@ export default combineReducers({
 	user: usersReducer,
 	errors: errorsReducer,
   session: sessionsReducer,
-  currentPartyTemplateID: currentPartyTemplateReducer
+  currentPartyTemplate: currentPartyTemplateReducer
 })
