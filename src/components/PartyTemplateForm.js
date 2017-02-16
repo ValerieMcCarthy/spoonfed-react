@@ -3,8 +3,14 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
-
+import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 import { addTemplate } from '../actions'
+
+const CLOUDINARY_UPLOAD_PRESET = 'SpoonfedPartyTemplate';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/projects/upload';
+
 
 
 class PartyTemplateForm extends React.Component{
@@ -23,13 +29,42 @@ class PartyTemplateForm extends React.Component{
       description,
       theme_category,
       min_age,
-      max_age
+      max_age,
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: ''
     }
  }
 
+  onImageDrop(files) {
+    debugger
+    this.setState({
+      uploadedFile: files[0]
+    });
+
+    this.handleImageUpload(files[0]);
+  }
+
+   handleImageUpload(file) {
+    
+    let upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url
+        });
+      }
+    });
+  }
+
   handleSubmit(event){
     event.preventDefault()
-    debugger
     this.props.addTemplate(this.state)
   }
 
@@ -74,7 +109,22 @@ class PartyTemplateForm extends React.Component{
           <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.state.theme_category}/></p>
           <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
           <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
+            <div className='FileUpload'>
+              <Dropzone
+                multiple={false}
+                accept="image/*"
+                onDrop={this.onImageDrop.bind(this)}>
+                <p>Drop an image or click to select a file to upload.</p>
+              </Dropzone>
+            </div>
           <p><input type='submit'/></p>
+          <div>
+          {this.state.uploadedFileCloudinaryUrl === '' ? null :
+          <div>
+            <p>{this.state.uploadedFile.name}</p>
+            <img src={this.state.uploadedFileCloudinaryUrl} />
+          </div>}
+        </div>
         </form>
       </div>
 
