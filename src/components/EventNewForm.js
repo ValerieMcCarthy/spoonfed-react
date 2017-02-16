@@ -5,19 +5,16 @@ import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
 
 import { addEvent } from '../actions'
-// import EventNewForm from './EventNewForm'
-import PartyTemplateShow from './PartyTemplateShow'
 
 
-class EventNew extends React.Component{
+class EventNewForm extends React.Component{
   constructor(props){
     super(props)
-    let partyTemplateID = props.routeParams.id
     this.state = {
       title: '',
       description: '',
-      party_template_id: partyTemplateID,
-      num_attendees: ''
+      party_template_id: '',
+      num_attendees: '',
     }
   }
 
@@ -30,22 +27,32 @@ class EventNew extends React.Component{
 
   handleOnChange(event){
     switch(event.target.name){
-  	case  'title':
+    case  'title':
       this.setState({
         title: event.target.value
       })
       break
-  	case  'description':
+    case  'description':
       this.setState({
         description: event.target.value
       })
       break
-  	case  'num_attendees':
+    case  'party_template_id':
+      this.setState({
+        party_template_id: event.target.value
+      })
+      break
+    case  'user_id':
+      this.setState({
+        user_id: event.target.value
+      })
+      break
+    case  'num_attendees':
       this.setState({
         num_attendees: event.target.value
       })
       break
-  	}
+    }
   }
 
   render(){
@@ -55,11 +62,11 @@ class EventNew extends React.Component{
         <form onSubmit={this.handleSubmit.bind(this)}>
           <p><input placeholder='Title' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.state.title}/></p>
           <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.state.description}/></p>
-         
+          <p><input placeholder='Party Template ID' type='text' onChange={this.handleOnChange.bind(this)} name='party_template_id' value={this.state.party_template_id}/></p>
+          <p><input placeholder='User ID' type='text' onChange={this.handleOnChange.bind(this)} name='user_id' value={this.state.user_id}/></p>
           <p><input placeholder='Number of Attendees' type='text' onChange={this.handleOnChange.bind(this)} name='num_attendees' value={this.state.num_attendees}/></p>
           <p><input type='submit'/></p>
         </form>
-        < PartyTemplateShow templateID={this.state.party_template_id } />
       </div>
 
       )
@@ -77,4 +84,4 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ addEvent }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(EventNew)
+export default connect(mapStateToProps, mapDispatchToProps)(EventNewForm)

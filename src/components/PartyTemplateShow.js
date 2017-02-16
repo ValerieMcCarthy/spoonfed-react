@@ -12,7 +12,12 @@ class PartyTemplateShow extends Component {
 
   constructor (props){
     super(props)
-    this.props.updateCurrentTemplate(this.props.params.id)
+    debugger
+    if (props.templateID) {
+      this.props.updateCurrentTemplate(props.templateID)
+    } else {
+      this.props.updateCurrentTemplate(this.props.params.id)
+    }
   }
 
   handleClick(event, template){
@@ -35,6 +40,7 @@ class PartyTemplateShow extends Component {
           <h4> Party Template Creator: {template.user.name} </h4>
           <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
           <Link to={`/parties/${template.id}/edit`}> Edit </Link>
+          <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>
         </div>
        )
       }

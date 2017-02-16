@@ -9,6 +9,7 @@ import PartyTemplateNew from './components/PartyTemplateNew'
 import PartyTemplateEdit from './components/PartyTemplateEdit'
 import UserShow from './components/UserShow'
 import EventNew from './components/EventNew'
+import EventShow from './components/EventShow'
 
 
 export default (
@@ -21,9 +22,11 @@ export default (
   
   <Route path='parties/:id' component={PartyTemplateShow} />
   <Route path='parties/:id/edit' component={ PartyTemplateEdit } />
+  <Route path='parties/:id/events/new' component={ EventNew } />
 
+ 
   <Route path='users/:id' component={UserShow} />
-  <Route path='events/new' component={EventNew} />
+
 
 </Route>
 
