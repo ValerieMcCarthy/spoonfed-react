@@ -8,30 +8,28 @@ import { addTemplate } from '../actions'
 
 
 class PartyTemplateForm extends React.Component{
+
+  componentWillReceiveProps(nextProps) {
+    this.setState( nextProps.template )
+  }
+
   constructor(props){
     super(props)
     debugger
-    if (props.template){
-      this.state = {
-       title: props.template.title,
-       description: props.template.description,
-       theme_category: props.template.theme_category,
-       min_age: props.template.min_age,
-       max_age: props.template.max_age,
-      }
-    } else {
+    const { title, description, theme_category, min_age, max_age } = props.template 
+      
     this.state = {
-      title: '',
-      description: '',
-      theme_category: '',
-      min_age: '',
-      max_age: '',
+      title,
+      description,
+      theme_category,
+      min_age,
+      max_age
     }
-  }
  }
 
   handleSubmit(event){
     event.preventDefault()
+    debugger
     this.props.addTemplate(this.state)
   }
 
@@ -71,11 +69,11 @@ class PartyTemplateForm extends React.Component{
       <div>
         <h3>Make a Party Template!</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <p><input placeholder='Party Template Name' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.props.template.title}/></p>
-          <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.props.template.description}/></p>
-          <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.props.template.theme_category}/></p>
-          <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.props.template.min_age}/></p>
-          <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.props.template.max_age}/></p>
+          <p><input placeholder='Party Template Name' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.state.title}/></p>
+          <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.state.description}/></p>
+          <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.state.theme_category}/></p>
+          <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
+          <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
           <p><input type='submit'/></p>
         </form>
       </div>
@@ -85,14 +83,10 @@ class PartyTemplateForm extends React.Component{
 
 }
 
-function mapStateToProps(
-
-){
-
-}
-
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ addTemplate }, dispatch )
+  return bindActionCreators( { addTemplate }, dispatch )
 }
+
+
 
 export default connect(null, mapDispatchToProps)(PartyTemplateForm)
