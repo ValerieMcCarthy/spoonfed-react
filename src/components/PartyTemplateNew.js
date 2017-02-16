@@ -9,30 +9,26 @@ import { updateCurrentTemplate } from '../actions'
 
 
 class PartyTemplateNew extends React.Component{
-  componentDidMount(){
-    if (this.props.location.query.id){
-    this.props.updateCurrentTemplate(this.props.location.query.id)
+  constructor(props){
+    super(props)
+    if (props.location.query.id ){
+      debugger
+    props.updateCurrentTemplate(props.location.query.id)
   }
   }
 
 
   render(){
-    return(
-      <PartyTemplateForm template={this.props.template}/>
 
-      )
+      return <PartyTemplateForm template={this.props.template} />
+    
   }
 
 }
 
-// function mapStateToProps(
-//
-// ){
-//
-// }
 
 function mapStateToProps(state){
-  return{
+  return {
     template: state.currentPartyTemplate
   }
 }
