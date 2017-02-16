@@ -9,6 +9,22 @@ axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
 // 	}
 // }
 
+export const editTemplate = (template) => {
+	debugger
+	return (dispatch) => {
+		axios.patch( URL + `/party_templates/{template.id}`, template )
+			.then( response =>  {
+				dispatch( templateEdit(response.data) ),
+				browserHistory.push(`/parties/${template.id}`)
+				} )
+	}
+}
+
+const templateEdit = (response) => {
+	return { type: "SUCCESSFUL_EDIT",
+						payload: response
+					}
+}
 
 export const fetchTemplates = () => {
 	return (dispatch) => {

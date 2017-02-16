@@ -3,23 +3,24 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
-import PartyTemplateForm from './PartyTemplateForm'
+import PartyTemplateEditForm from './PartyTemplateEditForm'
 import { updateCurrentTemplate } from '../actions'
 
-
-
-class PartyTemplateNew extends React.Component{
+class PartyTemplateEdit extends React.Component{
   constructor(props){
     super(props)
-    if (props.location.query.id ){
-    props.updateCurrentTemplate(props.location.query.id)
+    
+    if (props.routeParams.id){
+      
+    props.updateCurrentTemplate(props.routeParams.id)
   }
   }
 
 
   render(){
-      return <PartyTemplateForm template={this.props.template} />
 
+      return <PartyTemplateEditForm template={this.props.template} />
+    
   }
 
 }
@@ -35,4 +36,4 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ updateCurrentTemplate }, dispatch )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PartyTemplateNew)
+export default connect(mapStateToProps, mapDispatchToProps)(PartyTemplateEdit)
