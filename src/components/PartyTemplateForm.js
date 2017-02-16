@@ -11,6 +11,7 @@ class PartyTemplateForm extends React.Component{
   constructor(props){
     super(props)
     debugger
+    this.state = {}
     if (props.template){
       this.state = {
        title: props.template.title,
@@ -71,11 +72,11 @@ class PartyTemplateForm extends React.Component{
       <div>
         <h3>Make a Party Template!</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
-          <p><input placeholder='Party Template Name' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.props.template.title}/></p>
-          <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.props.template.description}/></p>
-          <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.props.template.theme_category}/></p>
-          <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.props.template.min_age}/></p>
-          <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.props.template.max_age}/></p>
+          <p><input placeholder='Party Template Name' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.state.title}/></p>
+          <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.state.description}/></p>
+          <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.state.theme_category}/></p>
+          <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
+          <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
           <p><input type='submit'/></p>
         </form>
       </div>
@@ -85,14 +86,14 @@ class PartyTemplateForm extends React.Component{
 
 }
 
-function mapStateToProps(
-
-){
-
+function mapStateToProps(state){
+  return{
+    template: state.currentPartyTemplate
+  }
 }
 
 function mapDispatchToProps(dispatch){
   return bindActionCreators({ addTemplate }, dispatch )
 }
 
-export default connect(null, mapDispatchToProps)(PartyTemplateForm)
+export default connect(mapStateToProps, mapDispatchToProps)(PartyTemplateForm)

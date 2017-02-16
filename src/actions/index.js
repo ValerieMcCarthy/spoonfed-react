@@ -117,6 +117,30 @@ function setTemplate(response){
 		payload: response.data
 	}
 }
+
+export function addEvent(newevent){
+	return (dispatch) => {
+		axios.post( URL + '/events', newevent).then( response => (dispatch(successfulAddEvent(response)),
+			checkEvent(newevent, response)))
+			.catch( (err) => dispatch(badLogIn(err)))
+		}
+}
+
+function checkEvent(newevent, response){
+	debugger
+	if (newevent.num_attendees === "10") {
+		return browserHistory.push(`/parties`)
+	} else {
+		return browserHistory.push(`/events/${response.data.id}`)
+		}
+  }
+
+function successfulAddEvent(response){
+	return {
+		type: 'ADD_EVENT',
+		payload: response.data
+	}
+}
 	// const response = axios.post( URL + '/login', user).then( (response) => {
 	// 		sessionStorage.setItem('jwt', response.data.jwt)
 	// 		return {

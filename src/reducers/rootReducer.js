@@ -4,6 +4,7 @@ import errorsReducer from './errorsReducer'
 import partyTemplateReducer from './partyTemplateReducer'
 import sessionsReducer from './sessionsReducer'
 import currentPartyTemplateReducer from './currentPartyTemplateReducer'
+import eventReducer from './eventReducer'
 
 
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
 	user: usersReducer,
 	errors: errorsReducer,
   session: sessionsReducer,
-  currentPartyTemplate: currentPartyTemplateReducer
+  currentPartyTemplate: currentPartyTemplateReducer,
+  event: eventReducer
 })

@@ -9,7 +9,8 @@ import { updateCurrentTemplate } from '../actions'
 
 
 class PartyTemplateNew extends React.Component{
-  componentDidMount(){
+  componentWillMount(){
+    debugger
     if (this.props.location.query.id){
     this.props.updateCurrentTemplate(this.props.location.query.id)
   }
@@ -17,8 +18,9 @@ class PartyTemplateNew extends React.Component{
 
 
   render(){
+    const template= this.props.template
     return(
-      <PartyTemplateForm template={this.props.template}/>
+      <PartyTemplateForm template={template}/>
 
       )
   }
