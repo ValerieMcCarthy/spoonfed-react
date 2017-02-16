@@ -15,14 +15,6 @@ class PartyTemplateShow extends Component {
     this.props.updateCurrentTemplate(this.props.params.id)
   }
 
-
-  // updateCurrentTemplate(){
-  //     let curr = this
-  //     axios.get(`http://localhost:3000/api/v1/party_templates/${curr.props.params.id}`).then(response => curr.setState({
-  //       currentTemplate: response.data
-  //       }))
-  // }
-
   handleClick(event, template){
     debugger
   }
@@ -37,10 +29,12 @@ class PartyTemplateShow extends Component {
        return(
         <div>
           <h1> { template.title } </h1>
+          <p> Category: {template.theme_category} </p>
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age} - {template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
-          <Link to={`/parties/new?id=${template.id}`} params={{id: template.id}}>Clone</Link>
+          <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
+          <Link to={`/parties/${template.id}/edit`}> Edit </Link>
         </div>
        )
       }
