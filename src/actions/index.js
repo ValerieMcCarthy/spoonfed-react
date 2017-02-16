@@ -103,6 +103,20 @@ function successfulAddTemplate(response){
 		payload: response.data
 	}
 }
+
+export function updateCurrentTemplate(id){
+		return (dispatch) => {
+			axios.get(URL + `/party_templates/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(badLogIn(err)))
+		}
+
+}
+
+function setTemplate(response){
+	return {
+		type: 'SET_TEMPLATE',
+		payload: response.data
+	}
+}
 	// const response = axios.post( URL + '/login', user).then( (response) => {
 	// 		sessionStorage.setItem('jwt', response.data.jwt)
 	// 		return {
