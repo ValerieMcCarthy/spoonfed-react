@@ -5,11 +5,14 @@ import partyTemplateReducer from './partyTemplateReducer'
 import sessionsReducer from './sessionsReducer'
 import currentPartyTemplateReducer from './currentPartyTemplateReducer'
 import eventReducer from './eventReducer'
+import growlerReducer  from './growlerReducer';
 
 
 
 
-export default combineReducers({
+
+const rootReducer = combineReducers({
+  growler: growlerReducer,
   partyTemplates: partyTemplateReducer,
 	user: usersReducer,
 	errors: errorsReducer,
@@ -17,3 +20,5 @@ export default combineReducers({
   currentPartyTemplate: currentPartyTemplateReducer,
   event: eventReducer,
 })
+
+export default rootReducer;

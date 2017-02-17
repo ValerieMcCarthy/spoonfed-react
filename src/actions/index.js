@@ -93,9 +93,12 @@ export function checkSession(){
 
 function badLogIn(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Error. Could not successfully login.'
-	}
+		type: 'GROWLER__SHOW',
+  growler: {
+    text: 'Please enter your JIRA url',
+    type: 'growler--error',
+  }
+ }
 }
 
 function badSignUp(err){
