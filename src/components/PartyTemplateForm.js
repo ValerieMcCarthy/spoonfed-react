@@ -21,8 +21,14 @@ class PartyTemplateForm extends React.Component{
 
   constructor(props){
     super(props)
-    debugger
-    const { title, description, theme_category, min_age, max_age } = props.template 
+    const { 
+          title, 
+          description, 
+          theme_category, 
+          min_age, 
+          max_age,
+          uploadedFile,
+          uploadedFileCloudinaryUrl }         = props.template 
       
     this.state = {
       title,
@@ -30,8 +36,8 @@ class PartyTemplateForm extends React.Component{
       theme_category,
       min_age,
       max_age,
-      uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
+      uploadedFile,
+      uploadedFileCloudinaryUrl
     }
  }
 
@@ -121,7 +127,6 @@ class PartyTemplateForm extends React.Component{
           <div>
           {this.state.uploadedFileCloudinaryUrl === '' ? null :
           <div>
-            <p>{this.state.uploadedFile.name}</p>
             <img src={this.state.uploadedFileCloudinaryUrl} />
           </div>}
         </div>

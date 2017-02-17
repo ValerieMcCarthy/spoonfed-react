@@ -8,6 +8,7 @@ import PartyTemplateShow from './components/PartyTemplateShow'
 import PartyTemplateNew from './components/PartyTemplateNew'
 import PartyTemplateEdit from './components/PartyTemplateEdit'
 import UserShow from './components/UserShow'
+import Form from './components/form'
 
 
 export default (
@@ -17,6 +18,7 @@ export default (
 	<Route path='login' component={UserLogin} />
   <Route path='parties' component={PartyTemplateList}  />
 	<Route path='parties/new' component={PartyTemplateNew} />
+  <Route path='form' component={ Form } />
   
   <Route path='parties/:id' component={PartyTemplateShow} />
   <Route path='parties/:id/edit' component={ PartyTemplateEdit } />
