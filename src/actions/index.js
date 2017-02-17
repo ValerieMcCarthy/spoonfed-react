@@ -3,11 +3,6 @@ import { browserHistory} from 'react-router'
 
 const URL='http://localhost:3000/api/v1'
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
-// export const fetchTemplates = () => {
-// 	return(dispatch) => {
-// 		axios.get(URL + '/party_templates').then((response) => (dispatch((response) => return{type:'FETCH_TEMPLATES', payload: response.data})))
-// 	}
-// }
 
 export const editTemplate = (template) => {
 	debugger
@@ -29,7 +24,7 @@ const templateEdit = (response) => {
 export const fetchTemplates = () => {
 	return (dispatch) => {
 		axios.get( URL + '/party_templates').then( (response) =>
-			(dispatch(successfulFetch(response.data))))
+			( dispatch(successfulFetch(response.data))))
 	}}
 
 function successfulFetch(response){
@@ -94,17 +89,20 @@ export function checkSession(){
 function badLogIn(err){
 	return {
 		type: 'GROWLER__SHOW',
-  growler: {
-    text: 'Please enter your JIRA url',
-    type: 'growler--error',
-  }
+  	growler: {
+	    text: 'Sorry, no one by that name or with that password is on the guest list.',
+	    type: 'growler--error',
+	  }
  }
 }
 
 function badSignUp(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Error. Could not successfully add user.'
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Error. Could not successfully add user.',
+			type: 'growler--error',
+		} 
 	}
 }
 
@@ -146,8 +144,11 @@ export function updateCurrentTemplate(id){
 
 function failedUpdateCurrentTemplate(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Could not create retrieve the current template.'
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Error. Could not find that party.',
+			type: 'growler--error'
+		} 
 	}
 }
 
@@ -166,8 +167,11 @@ export function updateCurrentEvent(id){
 
 function failedUpdateCurrentEvent(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Could not create retrieve the current event.'
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Could not retrieve the current event.',
+			type: 'growler--error'
+		} 
 	}
 }
 
@@ -189,8 +193,11 @@ export function addEvent(newevent){
 
 function failedAddEvent(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Could not successfully create a new event'
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Could not successfully create a new event',
+			type: 'growler--error'
+		} 
 	}
 }
 
@@ -218,20 +225,3 @@ export function requireAuth(nextState, replace){
 		})
 	}
 }
-	// const response = axios.post( URL + '/login', user).then( (response) => {
-	// 		sessionStorage.setItem('jwt', response.data.jwt)
-	// 		return {
-	// 			type: 'LOGIN_USER',
-	// 			payload: response
-	// 		}
-	// 	}).catch(function () {
-	// 	console.log(error)
-	// 	return {
-	// 		type: 'ERROR_MESSAGE',
-	// 		payload: "error"
-	// 	}
-	// })
-
-
-
-// }

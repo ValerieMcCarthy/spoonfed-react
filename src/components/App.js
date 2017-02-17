@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Growler     from './growlerContainer'
 import NavBar from './NavBar'
-import Errors from './Errors'
 
 export default class App extends Component {
 

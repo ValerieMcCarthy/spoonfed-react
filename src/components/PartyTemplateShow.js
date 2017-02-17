@@ -27,7 +27,7 @@ class PartyTemplateShow extends Component {
     let template = this.props.template
 
     if (!template || !template.user) {
-      return(<div> Sorry, not found! </div>)
+      return(<div />)
     } else {
        return(
         <div>
