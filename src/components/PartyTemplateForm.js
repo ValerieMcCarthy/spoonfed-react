@@ -21,7 +21,7 @@ class PartyTemplateForm extends React.Component{
 
   constructor(props){
     super(props)
-    
+   
     const { title, description, theme_category, min_age, max_age, party_picture } = props.template 
       
     this.state = {
@@ -144,7 +144,6 @@ class PartyTemplateForm extends React.Component{
 function mapDispatchToProps(dispatch){
   return bindActionCreators( { addTemplate }, dispatch )
 }
-
 
 
 export default connect(null, mapDispatchToProps)(PartyTemplateForm)

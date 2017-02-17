@@ -26,7 +26,7 @@ class PartyTemplateList extends React.Component{
         { templates.map( (template, index) => {
       return (
       
-        <div className="col s4">
+        <div className="col s4" key={index}>
           <div className="card purple darken-2">
             <div className="card-content white-text">
               <span className="card-title">{template.title}</span>

@@ -12,16 +12,14 @@ class PartyTemplateNew extends React.Component{
   constructor(props){
     super(props)
     if (props.location.query.id ){
-      
     props.updateCurrentTemplate(props.location.query.id)
   }
   }
 
 
   render(){
-
       return <PartyTemplateForm template={this.props.template} />
-    
+
   }
 
 }
