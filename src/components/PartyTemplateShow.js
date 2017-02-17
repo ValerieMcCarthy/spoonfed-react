@@ -4,6 +4,8 @@ import { browserHistory, Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import axios from 'axios'
 import { updateCurrentTemplate } from '../actions'
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
 class PartyTemplateShow extends Component {
 
@@ -25,17 +27,26 @@ class PartyTemplateShow extends Component {
 
   render() {
     let template = this.props.template
+    debugger
 
     if (!template || !template.user) {
       return(<div />)
     } else {
        return(
-        <div>
+        <div className='row'>
+          <div className="col s6">
           <h1> { template.title } </h1>
           <p> Category: {template.theme_category} </p>
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age} - {template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
+          </div>
+          <div className="col s6">
+          {template.party_picture === '' ? null :
+            <div>
+              <img className='responsive-img' src={template.party_picture} />
+            </div>}
+          </div>
           <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
           <Link to={`/parties/${template.id}/edit`}> Edit </Link>
           <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>

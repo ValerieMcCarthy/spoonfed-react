@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import { addTemplate } from '../actions'
