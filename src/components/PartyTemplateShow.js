@@ -14,11 +14,14 @@ class PartyTemplateShow extends Component {
 
   constructor (props){
     super(props)
-    this.props.updateCurrentTemplate(this.props.params.id)
+    if (props.templateID) {
+      this.props.updateCurrentTemplate(props.templateID)
+    } else {
+      this.props.updateCurrentTemplate(this.props.params.id)
+    }
   }
 
   handleClick(event, template){
-    debugger
   }
 
 
@@ -27,7 +30,7 @@ class PartyTemplateShow extends Component {
     debugger
 
     if (!template || !template.user) {
-      return(<div> Sorry, not found! </div>)
+      return(<div />)
     } else {
        return(
         <div className='row'>
@@ -46,6 +49,7 @@ class PartyTemplateShow extends Component {
           </div>
           <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
           <Link to={`/parties/${template.id}/edit`}> Edit </Link>
+          <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>
         </div>
        )
       }

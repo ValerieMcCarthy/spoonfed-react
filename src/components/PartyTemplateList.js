@@ -26,10 +26,12 @@ class PartyTemplateList extends React.Component{
         { templates.map( (template, index) => {
         return (
       
-        <div className="col s4">
+
+        <div className="col s4 key={index}">
           <div className="card medium">
             <div className="card-image">
               <img src={template.party_picture} />
+
               <span className="card-title">{template.title}</span>
             </div>
             <div className='card-content'>
