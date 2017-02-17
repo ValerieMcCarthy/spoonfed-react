@@ -26,12 +26,14 @@ class PartyTemplateShow extends Component {
 
 
   render() {
+    
     let template = this.props.template
-    debugger
+    
 
     if (!template || !template.user) {
       return(<div />)
     } else {
+      let userValidate = (template.user.id == sessionStorage.id)
        return(
         <div className='row'>
           <div className="col s6">
@@ -40,6 +42,9 @@ class PartyTemplateShow extends Component {
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age} - {template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
+          <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
+          {userValidate ? <Link to={`/parties/${template.id}/edit`}> Edit </Link> : null}
+          <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>
           </div>
           <div className="col s6">
           {template.party_picture === '' ? null :
@@ -47,9 +52,7 @@ class PartyTemplateShow extends Component {
               <img className='responsive-img' src={template.party_picture} />
             </div>}
           </div>
-          <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
-          <Link to={`/parties/${template.id}/edit`}> Edit </Link>
-          <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>
+          
         </div>
        )
       }
