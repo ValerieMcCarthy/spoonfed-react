@@ -24,25 +24,28 @@ class PartyTemplateList extends React.Component{
       
       <div className="row">
         { templates.map( (template, index) => {
-      return (
+        return (
       
         <div className="col s4">
-          <div className="card purple darken-2">
-            <div className="card-content white-text">
+          <div className="card medium">
+            <div className="card-image">
+              <img src={template.party_picture} />
               <span className="card-title">{template.title}</span>
-              <p>{template.description}</p>
-              <br/>
-              <p>Category: {template.theme_category}</p>
             </div>
-            <div className="card-action">
-              < Link to={`/parties/${template.id}`} >
+            <div className='card-content'>
+              <p><div className="thick">{template.theme_category}</div>
+               {template.description}</p>
+            </div>
+            <div className="card-action grey lighten-2">
+                < Link to={`/parties/${template.id}`} >
               Learn More
-            </ Link >
-              <a href="#"></a>
+                </ Link >
+                <a href="#"></a>
+              </div>
             </div>
-          </div>
-        </div> )} )}
-      </div>
+          </div> )
+          } )}
+        </div>
      
        {this.props.children}
       </div>

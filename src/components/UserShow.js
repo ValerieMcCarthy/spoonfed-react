@@ -3,6 +3,9 @@ import { connect } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { bindActionCreator } from 'redux'
 import axios from 'axios'
+import moment from "moment"
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
 
 class UserShow extends Component {
 
@@ -36,14 +39,26 @@ class UserShow extends Component {
       return(<div> Sorry, not found! </div>)
     } else {
        return(
-        <div>
+        <div className='row'>
+          <div className="col s6">
           <h3> { user.name } </h3>
           <h5> Email: { user.email } </h5>
           <h5> Zip Code: { user.zipcode } </h5>
           <h5> Gender: { user.gender } </h5>
-          <h5> Date of birth: { user.date_of_birth } </h5>
+          <h5> Date of birth: { moment(user.date_of_birth).format("MMM Do YYYY") } </h5>
           <h5> Bio: { user.bio } </h5>
-          <h5> Profile Picture: { user.profile_picture } </h5>
+          </div>
+          <div className="col s6">
+          
+              <div>
+              {user.user_profile_picture === '' ? null :
+                  <div>
+                    <img className='responsive-img circle' src={user.user_profile_picture} />
+                  </div>}
+              </div>
+
+       
+          </div>
 
 
         </div>
@@ -52,13 +67,7 @@ class UserShow extends Component {
   }
 }
 
-  // t.string   "email"
-  //   t.string   "password_digest"
-  //   t.integer  "zipcode"
-  //   t.datetime "date_of_birth"
-  //   t.string   "gender"
-  //   t.text     "bio"
-  //   t.string   "profile_picture"
+//moment().format("MMM Do YYYY")
 
 
 export default UserShow
