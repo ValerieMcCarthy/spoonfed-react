@@ -12,7 +12,7 @@ class PartyTemplateNew extends React.Component{
   constructor(props){
     super(props)
     if (props.location.query.id ){
-      debugger
+      
     props.updateCurrentTemplate(props.location.query.id)
   }
   }

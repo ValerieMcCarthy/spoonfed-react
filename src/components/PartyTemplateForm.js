@@ -21,8 +21,8 @@ class PartyTemplateForm extends React.Component{
 
   constructor(props){
     super(props)
-    debugger
-    const { title, description, theme_category, min_age, max_age } = props.template 
+    
+    const { title, description, theme_category, min_age, max_age, party_picture } = props.template 
       
     this.state = {
       title,
@@ -30,22 +30,24 @@ class PartyTemplateForm extends React.Component{
       theme_category,
       min_age,
       max_age,
+      party_picture,
       uploadedFile: null,
       uploadedFileCloudinaryUrl: ''
     }
  }
 
   onImageDrop(files) {
-    debugger
+    
     this.setState({
       uploadedFile: files[0]
     });
 
     this.handleImageUpload(files[0]);
+    
   }
 
    handleImageUpload(file) {
-    
+    const curr = this
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
@@ -56,14 +58,19 @@ class PartyTemplateForm extends React.Component{
       }
 
       if (response.body.secure_url !== '') {
-        this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+        
+        curr.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+          party_picture: response.body.secure_url
         });
+      
       }
     });
+
   }
 
   handleSubmit(event){
+
     event.preventDefault()
     this.props.addTemplate(this.state)
   }
@@ -118,14 +125,15 @@ class PartyTemplateForm extends React.Component{
               </Dropzone>
             </div>
           <p><input type='submit'/></p>
-          <div>
+         
+        </form>
+         <div>
           {this.state.uploadedFileCloudinaryUrl === '' ? null :
           <div>
             <p>{this.state.uploadedFile.name}</p>
             <img src={this.state.uploadedFileCloudinaryUrl} />
           </div>}
         </div>
-        </form>
       </div>
 
       )
