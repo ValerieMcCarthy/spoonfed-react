@@ -13,6 +13,7 @@ import App from './components/App'
 
 
 
+
 const store = createStore(rootReducer, applyMiddleware(ReduxThunk))
 
 ReactDOM.render(

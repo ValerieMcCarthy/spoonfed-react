@@ -94,7 +94,14 @@ export function checkSession(){
 function badLogIn(err){
 	return {
 		type: 'ERROR_MESSAGE',
-		payload: 'Error. Bad Error.'
+		payload: 'Error. Could not successfully login.'
+	}
+}
+
+function badSignUp(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Error. Could not successfully add user.'
 	}
 }
 
@@ -109,7 +116,7 @@ export function addTemplate(template){
 	return (dispatch) => {
 		axios.post( URL + '/party_templates', template).then( response => (dispatch(successfulAddTemplate(response)),
 			browserHistory.push(`/parties/${response.data.id}`)))
-			.catch( (err) => dispatch(badLogIn(err)))
+			.catch( (err) => dispatch(failedAddTemplate(err)))
 		}
 }
 
@@ -120,11 +127,25 @@ function successfulAddTemplate(response){
 	}
 }
 
+function failedAddTemplate(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Could not create a new template.'
+	}
+}
+
 export function updateCurrentTemplate(id){
 		return (dispatch) => {
-			axios.get(URL + `/party_templates/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(badLogIn(err)))
+			axios.get(URL + `/party_templates/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(failedUpdateCurrentTemplate(err)))
 		}
 
+}
+
+function failedUpdateCurrentTemplate(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Could not create retrieve the current template.'
+	}
 }
 
 function setTemplate(response){
@@ -133,13 +154,41 @@ function setTemplate(response){
 		payload: response.data
 	}
 }
+export function updateCurrentEvent(id){
+		return (dispatch) => {
+			axios.get(URL + `/events/` + id).then(response => (dispatch(setEvent(response)))).catch( (err) => dispatch(failedUpdateCurrentEvent(err)))
+		}
+
+}
+
+function failedUpdateCurrentEvent(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Could not create retrieve the current event.'
+	}
+}
+
+function setEvent(response){
+	return {
+		type: 'SET_EVENT',
+		payload: response.data
+	}
+}
 
 export function addEvent(newevent){
 	return (dispatch) => {
 		axios.post( URL + '/events', newevent).then( response => (dispatch(successfulAddEvent(response)),
 			checkEvent(newevent, response)))
-			.catch( (err) => dispatch(badLogIn(err)))
+			.catch( (err) => dispatch(failedAddEvent(err)))
 		}
+}
+
+
+function failedAddEvent(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Could not successfully create a new event'
+	}
 }
 
 function checkEvent(newevent, response){
@@ -155,6 +204,15 @@ function successfulAddEvent(response){
 	return {
 		type: 'ADD_EVENT',
 		payload: response.data
+	}
+}
+
+export function requireAuth(nextState, replace){
+	if (!sessionStorage.jwt) {
+		replace({
+			pathname: this,
+			state: { nextPathname: nextState.location.pathname }
+		})
 	}
 }
 	// const response = axios.post( URL + '/login', user).then( (response) => {

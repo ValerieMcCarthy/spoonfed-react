@@ -10,6 +10,7 @@ import PartyTemplateEdit from './components/PartyTemplateEdit'
 import UserShow from './components/UserShow'
 import EventNew from './components/EventNew'
 import EventShow from './components/EventShow'
+import { requireAuth } from './actions/'
 
 
 export default (
@@ -17,14 +18,15 @@ export default (
 <Route path='/' component={App} >
 	<Route path='signup' component={UserSignUp} />
 	<Route path='login' component={UserLogin} />
-  <Route path='parties' component={PartyTemplateList}  />
-	<Route path='parties/new' component={PartyTemplateNew} />
-  
-  <Route path='parties/:id' component={PartyTemplateShow} />
-  <Route path='parties/:id/edit' component={ PartyTemplateEdit } />
-  <Route path='parties/:id/events/new' component={ EventNew } />
+  <Route path='parties' component={PartyTemplateList} />
+	<Route path='parties/new' component={PartyTemplateNew} onEnter={requireAuth.bind('/parties')} />
 
- 
+  <Route path='parties/:id' component={PartyTemplateShow} />
+  <Route path='parties/:id/edit' component={ PartyTemplateEdit } onEnter={requireAuth.bind('/parties//')} />
+  <Route path='parties/:id/events/new' component={ EventNew } />
+  <Route path='events/:id' component={ EventShow } />
+
+
   <Route path='users/:id' component={UserShow} />
 
 

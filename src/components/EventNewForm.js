@@ -37,16 +37,6 @@ class EventNewForm extends React.Component{
         description: event.target.value
       })
       break
-    case  'party_template_id':
-      this.setState({
-        party_template_id: event.target.value
-      })
-      break
-    case  'user_id':
-      this.setState({
-        user_id: event.target.value
-      })
-      break
     case  'num_attendees':
       this.setState({
         num_attendees: event.target.value

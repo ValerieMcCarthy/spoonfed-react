@@ -12,7 +12,6 @@ class PartyTemplateShow extends Component {
 
   constructor (props){
     super(props)
-    debugger
     if (props.templateID) {
       this.props.updateCurrentTemplate(props.templateID)
     } else {
@@ -21,7 +20,6 @@ class PartyTemplateShow extends Component {
   }
 
   handleClick(event, template){
-    debugger
   }
 
 
