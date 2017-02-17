@@ -4,12 +4,10 @@ import { connect } from 'react-redux';
 import Growler from './growler.jsx';
 import * as growlerActionCreators from '../actions/growler.action';
 
-const mapStateToProps = state => ({
-  growler: state.growler,
-});
-const mapDispatchToProps = dispatch => bindActionCreators(growlerActionCreators, dispatch);
+
 
 class growlerContainer extends React.Component {
+  
 
   getMessage() {
     const lang = this.props.currentLocale || "enUS";
@@ -21,11 +19,16 @@ class growlerContainer extends React.Component {
   }
 
   render() {
-    debugger
     const message = this.getMessage();
     this.props.hideTimeOutGrowler(this.props.growler, this.props.shownFor);
     return <Growler {...this.props} message={message} />;
   }
 }
+
+const mapStateToProps = state => ({
+  growler: state.growler,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(growlerActionCreators, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(growlerContainer)

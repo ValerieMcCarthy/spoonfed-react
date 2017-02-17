@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
-import  { growlerContainer }  from './growler'
+import Growler     from './growlerContainer'
 import NavBar from './NavBar'
 import Errors from './Errors'
-
-
-
 
 export default class App extends Component {
 
@@ -12,9 +9,8 @@ export default class App extends Component {
     return(
       <div>
         <section>
-          <growlerContainer />
         <NavBar url="/" title="Spoonfed"/>
-        <Errors />
+        <Growler shownFor="4785"/>
         {this.props.children}
        </section>
       </div>

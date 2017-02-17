@@ -10,7 +10,6 @@ const initialState = {
 export default function growlerReducer(state = initialState, action) {
   switch (action.type) {
   case GROWLER__SHOW:
-  debugger
     return {
       ...state,
       ...action.growler,
