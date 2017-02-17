@@ -114,6 +114,7 @@ export function logoutUser(){
 }
 
 export function addTemplate(template){
+	
 	return (dispatch) => {
 		axios.post( URL + '/party_templates', template).then( response => (dispatch(successfulAddTemplate(response)),
 			browserHistory.push(`/parties/${response.data.id}`)))
