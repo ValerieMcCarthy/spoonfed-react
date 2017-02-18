@@ -1,21 +1,46 @@
 import React from 'react'
-import slug from '../../helpers/slugged'
+import slug from '../../utils/slugged'
 import Label from './Label'
+import roboStyle from '../../utils/stylizer'
 
-const Dropdown = ({ selectOptions, label, name = slug(label) }) => {
+ class Dropdown extends React.Component {
 
-  return(
-    <span>
-      <Label forValue={slug( label )} label={label} />
-      <select id={ slug( label ) } name={name}>
-        {selectOptions.map( (select, index) => {
-          return (
-            <option value={select} key={index}>{select}</option>
-          )
-         })}
-      </select>
-    </span>
+  render()  {
+    
+    const { selectOptions, 
+            label, 
+            styles, 
+            name = slug( label) } = this.props
+    
+    const blockStyles = roboStyle( styles )
+
+    return(
+      <span >
+        <Label
+          className={ blockStyles( 'label' ) }
+          forValue={ slug( label ) } 
+          label={ label } 
+        />
+        <select 
+          id={ slug( label ) } 
+          name={name}
+          className={ blockStyles( 'select' ) }
+        >
+          {selectOptions.map( (select, index) => {
+            return (
+              <option 
+                value={select} 
+                key={index}
+                className={ blockStyles( 'option' )}
+                > 
+                  {select}
+              </option>
+            )
+           })}
+        </select>
+      </span>
     )
+  }
 }
 
 

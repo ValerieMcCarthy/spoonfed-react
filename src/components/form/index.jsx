@@ -1,31 +1,33 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { bindActionCreator } from 'redux'
-import { addTemplate } from '../../actions'
+
 import Dropdown from './Dropdown'
-import Label from './Label'
 
 class Form extends Component {
   constructor(props){
     super(props)
-
     this.state = {
-      options: ['One', 'Two', 'Three']
+      options: ['One', 'Two', 'Three'],
+      categories: ['One', 'Two', 'Three']
     }
     
   }
 
   render() {
+    const dropdownStyles = {
+      
+      label: 'a-great-label another-one-too',
+      select: 'a-great-select',
+      option: 'a-great-option'
+    }
+    
     return (
+     
       <form>
         <Dropdown 
           selectOptions={ this.state.options } 
           label='Category'
-          
-           />
-
+          styles= { dropdownStyles }
+        />
       </form>
     )
   }
@@ -33,3 +35,4 @@ class Form extends Component {
 }
 
 export default Form
+
