@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.9.0"
+    "react-scripts": "0.9.0",
+    "copy-files": "^0.1.0",
+    "immutable-css-cli": "^1.1.1",
+    "normalize.css": "^5.0.0",
+    "tachyons-modules": "^1.1.8",
+    "watch": "^1.0.1"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -27,8 +32,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "css": "tachyons src/css/app.css > src/index.css --minify",
-    "prestart": "npm run css",
-    "prebuild": "npm run css"
+    "tach:css": "tachyons src/tachyons-custom/src/tachyons.css > src/css/tachyons.css --minify",
+    "prestart": "npm run tach:css",
+    "prebuild": "npm run tach:css",
+    "tach:watch": "watch 'npm run tach:css' ./src/tachyons-custom/src"
   }
 }
