@@ -39,10 +39,9 @@ class PartyTemplateList extends React.Component{
                {template.description}</p>
             </div>
             <div className="card-action grey lighten-2">
-                < Link to={`/parties/${template.id}`} >
-              Learn More
-                </ Link >
-                <a href="#"></a>
+                <a href={`/parties/${template.id}`}>Learn More</a>
+                <a className= 'right' href={`/parties/new?id=${template.id}`}>Clone</a>
+                
               </div>
             </div>
           </div> )
