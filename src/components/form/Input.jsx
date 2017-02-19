@@ -16,12 +16,14 @@ class Input extends React.Component {
             id = slug( label ),
             placeholder,
             errorMessage,
+            error,
             ...props } = this.props
 
     const blockStyles = roboStyle( styles )
 
     return(
       <span className={ blockStyles( 'span' )}>
+
         { label && 
         <Label className={ blockStyles( 'label' ) }
                forValue={ id } 
@@ -33,6 +35,11 @@ class Input extends React.Component {
                name={name}
                className={ blockStyles( 'input') } 
                {...props} />
+        { error && 
+        <div className={ blockStyles( 'error' ) }
+          {errorMessage}
+        </div>
+        }
       </span>
 
       )
