@@ -9,10 +9,10 @@ export default function Welcome(){
       <h3 className='italic'>Bringing inspiration to your parties </h3>
      	 <div className="row">
      	 	<div className="col s6">
-         		<a href="/signup" className="waves-effect waves-light btn-large red">Signup<i className="material-icons right">send</i></a>
+         		<a href="/signup" className="waves-effect waves-light btn-large red-background">Signup<i className="material-icons right">send</i></a>
          	</div>
          	<div className="col s6">
-         		<a href="/login" className="waves-effect waves-light btn-large red">Login<i className="material-icons right">send</i></a>
+         		<a href="/login" className="waves-effect waves-light btn-large red-background">Login<i className="material-icons right">send</i></a>
          	</div>
          </div>
     </div>
