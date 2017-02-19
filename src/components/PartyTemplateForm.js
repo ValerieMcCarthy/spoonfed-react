@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
-import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
+// import { CloudinaryContext, Transformation, Image } from 'cloudinary-react';
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import { addTemplate } from '../actions'
@@ -21,6 +21,7 @@ class PartyTemplateForm extends React.Component{
 
   constructor(props){
     super(props)
+
     const { 
           title, 
           description, 
@@ -29,6 +30,7 @@ class PartyTemplateForm extends React.Component{
           max_age,
           uploadedFile,
           uploadedFileCloudinaryUrl }         = props.template 
+
       
     this.state = {
       title,
@@ -37,21 +39,23 @@ class PartyTemplateForm extends React.Component{
       min_age,
       max_age,
       uploadedFile,
-      uploadedFileCloudinaryUrl
+      uploadedFileCloudinaryUrl,
+      party_picture
     }
  }
 
   onImageDrop(files) {
-    debugger
+    
     this.setState({
       uploadedFile: files[0]
     });
 
     this.handleImageUpload(files[0]);
+    
   }
 
    handleImageUpload(file) {
-    
+    const curr = this
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                         .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                         .field('file', file);
@@ -62,14 +66,19 @@ class PartyTemplateForm extends React.Component{
       }
 
       if (response.body.secure_url !== '') {
-        this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+        
+        curr.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+          party_picture: response.body.secure_url
         });
+      
       }
     });
+
   }
 
   handleSubmit(event){
+
     event.preventDefault()
     this.props.addTemplate(this.state)
   }
@@ -124,13 +133,14 @@ class PartyTemplateForm extends React.Component{
               </Dropzone>
             </div>
           <p><input type='submit'/></p>
-          <div>
+         
+        </form>
+         <div>
           {this.state.uploadedFileCloudinaryUrl === '' ? null :
           <div>
             <img src={this.state.uploadedFileCloudinaryUrl} />
           </div>}
         </div>
-        </form>
       </div>
 
       )
@@ -141,7 +151,6 @@ class PartyTemplateForm extends React.Component{
 function mapDispatchToProps(dispatch){
   return bindActionCreators( { addTemplate }, dispatch )
 }
-
 
 
 export default connect(null, mapDispatchToProps)(PartyTemplateForm)

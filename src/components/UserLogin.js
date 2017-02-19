@@ -13,7 +13,6 @@ class UserLogin extends Component {
 
 	handleSubmit(event){
 		event.preventDefault()
-
 		const user = {email: this.refs.email.value, password: this.refs.userPassword.value}
 		this.props.loginUser(user)
 	}

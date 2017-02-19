@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import Growler     from './growlerContainer'
 import NavBar from './NavBar'
-import Errors from './Errors'
-import '../css/tachyons.css'
+import Welcome from './Welcome'
 
 export default class App extends Component {
+
   render(){
     return(
-      <div className="pa2 pa5-ns athelas">
+      <div>
+        <section>
         <NavBar url="/" title="Spoonfed"/>
-        <Errors />
+        <Growler shownFor="4785"/>
         {this.props.children}
+       </section>
       </div>
     )
   }

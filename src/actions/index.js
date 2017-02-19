@@ -3,11 +3,6 @@ import { browserHistory} from 'react-router'
 
 const URL='http://localhost:3000/api/v1'
 axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
-// export const fetchTemplates = () => {
-// 	return(dispatch) => {
-// 		axios.get(URL + '/party_templates').then((response) => (dispatch((response) => return{type:'FETCH_TEMPLATES', payload: response.data})))
-// 	}
-// }
 
 export const editTemplate = (template) => {
 	debugger
@@ -29,7 +24,7 @@ const templateEdit = (response) => {
 export const fetchTemplates = () => {
 	return (dispatch) => {
 		axios.get( URL + '/party_templates').then( (response) =>
-			(dispatch(successfulFetch(response.data))))
+			( dispatch(successfulFetch(response.data))))
 	}}
 
 function successfulFetch(response){
@@ -93,8 +88,21 @@ export function checkSession(){
 
 function badLogIn(err){
 	return {
-		type: 'ERROR_MESSAGE',
-		payload: 'Error. Bad Error.'
+		type: 'GROWLER__SHOW',
+  	growler: {
+	    text: 'Sorry, no one by that name or with that password is on the guest list.',
+	    type: 'growler--error',
+	  }
+ }
+}
+
+function badSignUp(err){
+	return {
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Error. Could not successfully add user.',
+			type: 'growler--error',
+		} 
 	}
 }
 
@@ -106,10 +114,11 @@ export function logoutUser(){
 }
 
 export function addTemplate(template){
+	
 	return (dispatch) => {
 		axios.post( URL + '/party_templates', template).then( response => (dispatch(successfulAddTemplate(response)),
 			browserHistory.push(`/parties/${response.data.id}`)))
-			.catch( (err) => dispatch(badLogIn(err)))
+			.catch( (err) => dispatch(failedAddTemplate(err)))
 		}
 }
 
@@ -120,11 +129,28 @@ function successfulAddTemplate(response){
 	}
 }
 
+function failedAddTemplate(err){
+	return {
+		type: 'ERROR_MESSAGE',
+		payload: 'Could not create a new template.'
+	}
+}
+
 export function updateCurrentTemplate(id){
 		return (dispatch) => {
-			axios.get(URL + `/party_templates/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(badLogIn(err)))
+			axios.get(URL + `/party_templates/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(failedUpdateCurrentTemplate(err)))
 		}
 
+}
+
+function failedUpdateCurrentTemplate(err){
+	return {
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Error. Could not find that party.',
+			type: 'growler--error'
+		} 
+	}
 }
 
 function setTemplate(response){
@@ -133,20 +159,70 @@ function setTemplate(response){
 		payload: response.data
 	}
 }
-	// const response = axios.post( URL + '/login', user).then( (response) => {
-	// 		sessionStorage.setItem('jwt', response.data.jwt)
-	// 		return {
-	// 			type: 'LOGIN_USER',
-	// 			payload: response
-	// 		}
-	// 	}).catch(function () {
-	// 	console.log(error)
-	// 	return {
-	// 		type: 'ERROR_MESSAGE',
-	// 		payload: "error"
-	// 	}
-	// })
+export function updateCurrentEvent(id){
+		return (dispatch) => {
+			axios.get(URL + `/events/` + id).then(response => (dispatch(setEvent(response)))).catch( (err) => dispatch(failedUpdateCurrentEvent(err)))
+		}
+
+}
+
+function failedUpdateCurrentEvent(err){
+	return {
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Could not retrieve the current event.',
+			type: 'growler--error'
+		} 
+	}
+}
+
+function setEvent(response){
+	return {
+		type: 'SET_EVENT',
+		payload: response.data
+	}
+}
+
+export function addEvent(newevent){
+	return (dispatch) => {
+		axios.post( URL + '/events', newevent).then( response => (dispatch(successfulAddEvent(response)),
+			checkEvent(newevent, response)))
+			.catch( (err) => dispatch(failedAddEvent(err)))
+		}
+}
 
 
+function failedAddEvent(err){
+	return {
+		type: 'GROWLER__SHOW',
+		growler: {
+			text: 'Could not successfully create a new event',
+			type: 'growler--error'
+		} 
+	}
+}
 
-// }
+function checkEvent(newevent, response){
+	debugger
+	if (newevent.num_attendees === "10") {
+		return browserHistory.push(`/parties`)
+	} else {
+		return browserHistory.push(`/events/${response.data.id}`)
+		}
+  }
+
+function successfulAddEvent(response){
+	return {
+		type: 'ADD_EVENT',
+		payload: response.data
+	}
+}
+
+export function requireAuth(nextState, replace){
+	if (!sessionStorage.jwt) {
+		replace({
+			pathname: this,
+			state: { nextPathname: nextState.location.pathname }
+		})
+	}
+}
