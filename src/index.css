@@ -23,3 +23,7 @@ body {
 .thick {
     font-weight: bold;
 }
+
+.red-background{
+	background-color: #D84930;
+}

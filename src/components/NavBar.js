@@ -17,7 +17,7 @@ class NavBar extends React.Component {
   render(){
   return(
     <nav>
-    <div className="nav-wrapper padding red lighten-1">
+    <div className="nav-wrapper padding red-background">
       <a href="/" className="brand-logo">SpoonFed</a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
       <li><a href={`/parties/new`}>Make a Party</a></li>

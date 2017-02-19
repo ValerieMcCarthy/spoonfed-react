@@ -42,9 +42,21 @@ class PartyTemplateShow extends Component {
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age} - {template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
-          <Link to={`/parties/new?id=${template.id}`}>Clone</Link>
-          {userValidate ? <Link to={`/parties/${template.id}/edit`}> Edit </Link> : null}
-          <Link to={`/parties/${template.id}/events/new`}> Create an Event </Link>
+          <br/>
+           <div className="center">
+              <div className='col s4'>
+              <a href={`/parties/new?id=${template.id}`} className="waves-effect waves-light btn red-background">Clone</a>
+              </div>
+
+              <div className='col s4'>
+                <a href={`/parties/${template.id}/events/new`} className="waves-effect waves-light btn red-background">Make Event</a>
+               </div>
+              
+              <div className='col s4'>
+              {userValidate ? <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a> : null}
+              </div>
+            </div>
+          
           </div>
           <div className="col s6">
           {template.party_picture === '' ? null :
