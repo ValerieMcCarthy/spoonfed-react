@@ -35,11 +35,7 @@ class Input extends React.Component {
                name={name}
                className={ blockStyles( 'input') } 
                {...props} />
-        { error && 
-        <div className={ blockStyles( 'error' ) }
-          {errorMessage}
-        </div>
-        }
+     
       </span>
 
       )

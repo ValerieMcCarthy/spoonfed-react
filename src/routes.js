@@ -3,7 +3,7 @@ import UserSignUp  from './components/UserSignUp'
 import UserLogin  from './components/UserLogin'
 import App from './components/App'
 
-import { Route, Router, IndexPath, browserHistory } from 'react-router'
+import { Route, Router, IndexPath, IndexRedirect, browserHistory } from 'react-router'
 import Welcome from './components/Welcome'
 import PartyTemplateList from './components/PartyTemplateList'
 import PartyTemplateShow from './components/PartyTemplateShow'

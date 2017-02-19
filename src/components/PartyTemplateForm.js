@@ -28,6 +28,7 @@ class PartyTemplateForm extends React.Component{
           theme_category, 
           min_age, 
           max_age,
+          party_picture,
           uploadedFile,
           uploadedFileCloudinaryUrl }         = props.template 
 
