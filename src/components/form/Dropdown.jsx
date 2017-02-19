@@ -9,31 +9,32 @@ import roboStyle from '../../utils/stylizer'
     
     const { selectOptions, 
             label, 
-            styles, 
-            name = slug( label) } = this.props
+            styles = {}, 
+            name = slug( label ),
+            id = slug( label ),
+            ...props } = this.props
     
     const blockStyles = roboStyle( styles )
 
     return(
-      <span >
-        <Label
-          className={ blockStyles( 'label' ) }
-          forValue={ slug( label ) } 
-          label={ label } 
-        />
-        <select 
-          id={ slug( label ) } 
-          name={name}
-          className={ blockStyles( 'select' ) }
-        >
+      <span className={ blockStyles('span') } >
+        { label && 
+        <Label className={ blockStyles( 'label' ) }
+               forValue={ id } 
+               label={ label } />
+        }
+        
+        <select id={ id  } 
+                name={name}
+                className={ blockStyles( 'select' ) } 
+                {...props} >
+         
           {selectOptions.map( (select, index) => {
             return (
-              <option 
-                value={select} 
-                key={index}
-                className={ blockStyles( 'option' )}
-                > 
-                  {select}
+              <option value={select} 
+                      key={index}
+                      className={ blockStyles( 'option' )}> 
+                {select}
               </option>
             )
            })}

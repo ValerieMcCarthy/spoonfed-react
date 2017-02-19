@@ -6,7 +6,7 @@ import '../css/tachyons.css'
 export default class App extends Component {
   render(){
     return(
-      <div>
+      <div className="pa2 pa5-ns athelas">
         <NavBar url="/" title="Spoonfed"/>
         <Errors />
         {this.props.children}

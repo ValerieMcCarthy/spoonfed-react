@@ -1,27 +1,45 @@
 import classNames from 'classnames'
-
-export const defaultStyles = {
-  label: 'f6 b db mb2'
-
-}
+import defaultStyles from './defaultStyles'
 
 const split = string => string.split(" ")
 
 
-const stylizer = styles => element => {
-  let customClasses = [],
-        defaultClasses = []
+const stylizer = ( styles, baseStyles ) => ( ...elements ) => {
+  
+  let argType = typeof styles,
+      basicStyles = ( baseStyles ? defaultStyles[baseStyles] : defaultStyles.base),
+      element = elements[0],
+      customClasses,
+      defaultClasses,
+      defaults
 
+  if ( argType === 'string' ) {
+    return classNames( split(styles), elements )
+  }
 
   if ( styles[element] ) {
     customClasses = split( styles[element] )
   }
-  
-  if (defaultStyles[element]) {
-    defaultClasses = split( defaultStyles[element] )
+
+
+defaults = elements.map( el => {
+    if ( el && basicStyles[el] ){
+      return basicStyles[el]
+    }
+  })
+
+  if (baseStyles === 'header' ){
+    console.log(defaults)
   }
 
-  return classNames( defaultClasses, customClasses, element)
+ 
+
+  if ( defaults && !styles.overRide ) {
+    defaultClasses = split( defaults.join(' ') )
+  }
+
+
+  return classNames( defaultClasses, customClasses )
 }
 
 

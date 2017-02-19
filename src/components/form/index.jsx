@@ -1,38 +1,8 @@
 import React, { Component } from 'react'
 
-import Dropdown from './Dropdown'
+// Below, I pull in the default exports from various files, and then promptly export them again, so in other files we can just call `import { Dropdown, Input } from './form` 
 
-class Form extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      options: ['One', 'Two', 'Three'],
-      categories: ['One', 'Two', 'Three']
-    }
-    
-  }
-
-  render() {
-    const dropdownStyles = {
-      
-      label: 'a-great-label another-one-too',
-      select: 'a-great-select',
-      option: 'a-great-option'
-    }
-    
-    return (
-     
-      <form>
-        <Dropdown 
-          selectOptions={ this.state.options } 
-          label='Category'
-          styles= { dropdownStyles }
-        />
-      </form>
-    )
-  }
-
-}
-
-export default Form
+export { default as Input } from './Input'
+export { default as Dropdown } from './Dropdown'
+export { default as Submit } from './Submit'
 
