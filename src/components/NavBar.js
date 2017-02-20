@@ -23,7 +23,7 @@ class NavBar extends React.Component {
       <li><a href={`/parties/new`}>Make a Party</a></li>
       <li><a href="/parties">Party Templates</a> </li>
         {this.props.session ? <span>
-      <li><a href={`/users/${sessionStorage.getItem('id')}`}>Profile</a></li><li><a href="/" onClick={this.handleSignOut.bind(this)}>Logout</a></li>
+      <li><a href={`/profile`}>Profile</a></li><li><a href="/" onClick={this.handleSignOut.bind(this)}>Logout</a></li>
       </span> : <span>
       <li><a href="/signup">Signup</a></li> <li><a href="/login">Login</a></li>
     </span>}

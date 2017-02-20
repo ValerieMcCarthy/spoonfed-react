@@ -28,7 +28,7 @@ export const fetchTemplates = () => {
 	}}
 
 function successfulFetch(response){
-	
+
 	return{
 		type: 'FETCH_TEMPLATES',
 		payload: response
@@ -103,7 +103,7 @@ function badSignUp(err){
 		growler: {
 			text: 'Error. Could not successfully add user.',
 			type: 'growler--error',
-		} 
+		}
 	}
 }
 
@@ -115,7 +115,7 @@ export function logoutUser(){
 }
 
 export function addTemplate(template){
-	
+
 	return (dispatch) => {
 		axios.post( URL + '/party_templates', template).then( response => (dispatch(successfulAddTemplate(response)),
 			browserHistory.push(`/parties/${response.data.id}`)))
@@ -150,7 +150,7 @@ function failedUpdateCurrentTemplate(err){
 		growler: {
 			text: 'Error. Could not find that party.',
 			type: 'growler--error'
-		} 
+		}
 	}
 }
 
@@ -173,7 +173,7 @@ function failedUpdateCurrentEvent(err){
 		growler: {
 			text: 'Could not retrieve the current event.',
 			type: 'growler--error'
-		} 
+		}
 	}
 }
 
@@ -199,7 +199,7 @@ function failedAddEvent(err){
 		growler: {
 			text: 'Could not successfully create a new event',
 			type: 'growler--error'
-		} 
+		}
 	}
 }
 
@@ -223,6 +223,23 @@ export function requireAuth(nextState, replace){
 	if (!sessionStorage.jwt) {
 		replace({
 			pathname: this,
+			state: { nextPathname: nextState.location.pathname }
+		})
+	}
+}
+export function requireAuthForProfile(nextState, replace){
+	if (sessionStorage.jwt) {
+		replace({
+			pathname: '/profile',
+			state: { nextPathname: nextState.location.pathname }
+		})
+	}
+}
+
+export function requireAuthRedirectToShow(nextState, replace){
+	if (!sessionStorage.jwt) {
+		replace({
+			pathname: `/parties/${nextState.params.id}`,
 			state: { nextPathname: nextState.location.pathname }
 		})
 	}

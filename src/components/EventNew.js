@@ -42,7 +42,6 @@ class EventNew extends React.Component{
  }
 
   handleSubmit(event){
-    debugger
     event.preventDefault()
     this.props.addEvent(this.state)
   }

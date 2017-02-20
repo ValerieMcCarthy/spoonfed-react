@@ -21,9 +21,15 @@ class UserShow extends Component {
 
   findUser(){
       let curr = this
+      if (curr.props.params.id) {
       axios.get(`http://localhost:3000/api/v1/users/${curr.props.params.id}`).then(response => curr.setState({
         user: response.data
+      }))} else {
+        axios.get(`http://localhost:3000/api/v1/users/${sessionStorage.id}`).then(response => curr.setState({
+          user: response.data
         }))
+      }
+
 
   }
 
@@ -33,7 +39,6 @@ class UserShow extends Component {
 
   render() {
     let user = this.state.user
-    debugger
 
     if (!user) {
       return(<div> Sorry, not found! </div>)

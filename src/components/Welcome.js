@@ -7,7 +7,7 @@ export default function Welcome(){
     <div className='container center'>
       <h2>SpoonFed</h2>
       <h4 className='italic'>Bringing inspiration to your parties </h4>
-      
+
 
 
   <div className="row">
@@ -50,7 +50,11 @@ export default function Welcome(){
 
   </div>
 
-
+  { sessionStorage.id ? <div className="row">
+    <div className="col s12">
+      <a href="/parties/new" className="waves-effect waves-light btn-large red-background">Make a Party<i className="material-icons right">send</i></a>
+    </div>
+  </div> :
      	  <div className="row">
      	 	  <div className="col s6">
          		<a href="/signup" className="waves-effect waves-light btn-large red-background">Signup<i className="material-icons right">send</i></a>
@@ -58,8 +62,10 @@ export default function Welcome(){
          	<div className="col s6">
          		<a href="/login" className="waves-effect waves-light btn-large red-background">Login<i className="material-icons right">send</i></a>
          	</div>
-         </div>
+        </div> }
+
     </div>
+
   )
 }
 
