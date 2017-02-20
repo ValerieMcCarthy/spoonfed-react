@@ -1,8 +1,12 @@
+let inputBase = 'db border-box hover-black w-100 measure bb b--black-10 pa2 br2 mb2'
+
 const styles = {
 
   base: {
     label: 'f5 b db mv2',
-    input: 'db border-box hover-black w-100 measure bb b--black-10 pa2 br2 mb2',
+
+    'input-text': inputBase,
+    'input-password': inputBase,
     submit: 'f6 link br3 ba bw2 b--light-green hover-bg-light-green ph3 pv2 mb2 dib black bg-white',
     center: 'mw8 mw8-ns ph2  ph5-l center',
     form: 'w-100'

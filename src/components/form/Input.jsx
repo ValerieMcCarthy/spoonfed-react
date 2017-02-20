@@ -6,6 +6,7 @@ import roboStyle from '../../utils/stylizer'
 
 class Input extends React.Component {
 
+  
   render(){
 
 
@@ -30,10 +31,10 @@ class Input extends React.Component {
                label={ label } />
         }
         
-        <input type={type} 
-               id={id}
-               name={name}
-               className={ blockStyles( 'input') } 
+        <input type={ type } 
+               id={ id }
+               name={ name }
+               className={ blockStyles( `input-${type}` ) } 
                {...props} />
      
       </span>
@@ -44,5 +45,8 @@ class Input extends React.Component {
 
   }
 }
+
+
+
 
 export default Input

@@ -25,19 +25,14 @@ const stylizer = ( styles, baseStyles ) => ( ...elements ) => {
 defaults = elements.map( el => {
     if ( el && basicStyles[el] ){
       return basicStyles[el]
+    } else {
+      return el
     }
   })
-
-  if (baseStyles === 'header' ){
-    console.log(defaults)
-  }
-
- 
 
   if ( defaults && !styles.overRide ) {
     defaultClasses = split( defaults.join(' ') )
   }
-
 
   return classNames( defaultClasses, customClasses )
 }

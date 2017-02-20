@@ -16,9 +16,11 @@ import EventNew from './components/EventNew'
 import EventShow from './components/EventShow'
 import { requireAuth } from './actions/'
 
+// Alts
+
 import AltApp from './components/AltApp'
 import AltSignUp from './components/Alt/SignUp'
-// import AltPartyTemplate from './components/Alt/PartyTemplate'
+import AltPartyTemplate from './components/PartyTemplates'
 
 export default (
   <Router history={browserHistory}>
@@ -26,6 +28,7 @@ export default (
 
     <Route path='/tachyoned' component={AltApp} >
       <Route path='signup' component={AltSignUp} />
+      <Route path='parties' component={AltPartyTemplate} />
     </Route>
 
     <Route path='/' component={App} >
