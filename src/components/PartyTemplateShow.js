@@ -6,6 +6,9 @@ import axios from 'axios'
 import { updateCurrentTemplate } from '../actions'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
+import Portal from './portal'
+import { requireAuthToParties } from '../actions/'
+
 
 class PartyTemplateShow extends Component {
 
@@ -19,10 +22,34 @@ class PartyTemplateShow extends Component {
     } else {
       this.props.updateCurrentTemplate(this.props.params.id)
     }
+
+    this.togglePortal = this.togglePortal.bind(this)
+    this.deleteRequest = this.deleteRequest.bind(this)
+
+    this.state = {
+      showPortal: false
+    }
   }
 
-  handleClick(event, template){
+  togglePortal(event){
+    event.preventDefault()
+    this.setState({
+      showPortal: !this.state.showPortal
+    })
   }
+
+
+
+  handleClick(event, template){
+
+  }
+
+  deleteRequest(event){
+    event.preventDefault()
+    axios.delete(`http://localhost:3000/api/v1/party_templates/${this.props.params.id}`).then(response =>
+    {browserHistory.push('/parties')})
+  }
+
 
 
   render() {
@@ -57,7 +84,7 @@ class PartyTemplateShow extends Component {
               </div>
 
               <div className='col s12'>
-              {userValidate ? <a href={`/parties/${template.id}/delete`} className="waves-effect waves-light btn red-background">Delete</a> : null}
+              {userValidate ? <a href={`/parties/${template.id}/delete`} className="waves-effect waves-light btn red-background" onClick={this.togglePortal}>Delete</a> : null}
               </div>
             </div>
 
@@ -68,7 +95,7 @@ class PartyTemplateShow extends Component {
               <img className='responsive-img' src={template.party_picture} />
             </div>}
           </div>
-
+        {this.state.showPortal && <Portal handleClick={this.togglePortal} handleDelete={this.deleteRequest} templateId={template.id}/>}
         </div>
        )
       }

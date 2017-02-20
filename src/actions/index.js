@@ -227,6 +227,13 @@ export function requireAuth(nextState, replace){
 		})
 	}
 }
+export function requireAuthToParties(nextState, replace){
+		replace({
+			pathname: '/parties',
+			state: { nextPathname: nextState.location.pathname }
+		})
+	}
+
 export function requireAuthForProfile(nextState, replace){
 	if (sessionStorage.jwt) {
 		replace({
