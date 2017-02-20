@@ -27,3 +27,7 @@ body {
 .red-background{
 	background-color: #D84930;
 }
+
+.media-width{
+	max-width: 33%
+}
