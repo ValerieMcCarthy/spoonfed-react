@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
+var DatePicker = require('react-datepicker');
+var moment = require('moment');
+
+require('react-datepicker/dist/react-datepicker.css');
+
 const CLOUDINARY_UPLOAD_PRESET = 'SpoonfedPartyTemplate';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/projects/upload';
 
@@ -15,18 +20,32 @@ class UserSignUp extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this)
 		this.state = {
 			uploadedFile: null,
-      		uploadedFileCloudinaryUrl: ''
+      		uploadedFileCloudinaryUrl: '',
+					date: '',
+
 		}
 	}
 
+	getInitialState() {
+	 return {
+		 date: moment(),
+	 };
+	}
+
+ handleChange(date) {
+	 this.setState({
+		 date: date
+	 });
+ }
+
 	onImageDrop(files) {
-    
+
     this.setState({
       uploadedFile: files[0]
     });
 
     this.handleImageUpload(files[0]);
-    
+
   }
 
    handleImageUpload(file) {
@@ -41,12 +60,12 @@ class UserSignUp extends Component {
       }
 
       if (response.body.secure_url !== '') {
-        
+
         curr.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url,
-         
+
         });
-      
+
       }
     });
 
@@ -55,7 +74,7 @@ class UserSignUp extends Component {
 	handleSubmit(event){
 		event.preventDefault()
 
-		const user = {name: this.refs.name.value, email: this.refs.email.value, password: this.refs.userPassword.value, password_confirmation: this.refs.passwordConfirmation.value, zipcode: this.refs.zipcode.value, gender: this.refs.gender.value, date_of_birth: this.refs.dob.value, bio: this.refs.bio.value, user_profile_picture: this.state.uploadedFileCloudinaryUrl}
+		const user = {name: this.refs.name.value, email: this.refs.email.value, password: this.refs.userPassword.value, password_confirmation: this.refs.passwordConfirmation.value, zipcode: this.refs.zipcode.value, gender: this.refs.gender.value, date_of_birth: this.state.date, bio: this.refs.bio.value, user_profile_picture: this.state.uploadedFileCloudinaryUrl}
 		this.props.createUser(user)
 	}
 
@@ -84,7 +103,7 @@ class UserSignUp extends Component {
 							<input ref='gender' placeholder="Gender"/>
 						</div>
 						<div className="input-field col s6">
-							<input ref='dob' placeholder="Date of birth: FORMAT: YYYY-MM-DD"/>
+							<DatePicker placeholderText='Date of Birth' selected={this.state.date} onChange={this.handleChange.bind(this)} showMonthDropdown showYearDropdown/>
 						</div>
 						<div className="input-field col s6">
 							<input ref='bio' placeholder="Bio"/>

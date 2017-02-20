@@ -82,10 +82,10 @@ class UserShow extends Component {
 
         <div>
             <br/>
-
+            {userValidate && <h3>My Events</h3>}
             <ul>
             {userValidate ? user.events ? (user.events.map((eve, i) =>
-              <li><h3>My Events</h3><a href={`/events/${eve.id}`}><h5>{eve.title}</h5></a>
+              <li><a href={`/events/${eve.id}`}><h5>{eve.title}</h5></a>
                 <p>{eve.description}</p>
                 <p>Category: {user.event_parties[i].theme_category}</p>
                 <br/>
