@@ -3,27 +3,50 @@ import { Link } from 'react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { fetchTemplates } from '../actions'
+import SearchInput, {createFilter} from 'react-search-input'
+
+
 
 class PartyTemplateList extends React.Component{
   componentDidMount(){
     this.props.fetchTemplates()
   }
 
-  showTemplate(templateID){
+  constructor (){
+    super()
+    this.handleSearch = this.handleSearch.bind(this)
+    this.updateSearch = this.updateSearch.bind(this)
+    this.state = {
+      searchTerm: ''
+    }
+  }
 
+  handleSearch(event){
+    event.preventDefault()
+  }
+
+  updateSearch(term) {
+    this.setState({
+      searchTerm: term
+    })    
   }
 
   render(){
     
-    const templates = this.props.partyTemplates
+  const filters = ['title', 'description'],
+        templates = this.props.partyTemplates,
+        featured = templates.slice(0, 4),
+        filtered = templates.filter(createFilter(this.state.searchTerm, filters)),
+          searchStyle = 'input input-search'
     
     return(
       <div>
 
         <h3 className='center'> Delightful parties you could be throwing</h3>
+        <SearchInput className={searchStyle} onChange={this.updateSearch} />
       
       <div className="row">
-        { templates.map( (template, index) => {
+        { filtered.map( (template, index) => {
         return (
       
 
