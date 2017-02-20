@@ -67,7 +67,7 @@ class PartyTemplateShow extends Component {
           <h1> { template.title } </h1>
           <p> Category: {template.theme_category} </p>
           <h4> Description: {template.description} </h4>
-          <h4> Target Age Range: {template.min_age} - {template.max_age}</h4>
+          <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
           <br/>
            <div className="center">
