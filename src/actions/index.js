@@ -28,6 +28,7 @@ export const fetchTemplates = () => {
 	}}
 
 function successfulFetch(response){
+	
 	return{
 		type: 'FETCH_TEMPLATES',
 		payload: response
