@@ -8,6 +8,11 @@ import { addEvent } from '../actions'
 // import EventNewForm from './EventNewForm'
 import PartyTemplateShow from './PartyTemplateShow'
 
+var DatePicker = require('react-datepicker');
+var moment = require('moment');
+
+require('react-datepicker/dist/react-datepicker.css');
+
 
 class EventNew extends React.Component{
   constructor(props){
@@ -17,12 +22,25 @@ class EventNew extends React.Component{
       title: '',
       description: '',
       party_template_id: partyTemplateID,
-      num_attendees: ''
+      num_attendees: '',
+      date: ''
     }
   }
 
+  getInitialState() {
+   return {
+     date: moment()
+   };
+  }
+
+ handleChange(date) {
+   this.setState({
+     date: date
+   });
+ }
 
   handleSubmit(event){
+    debugger
     event.preventDefault()
     this.props.addEvent(this.state)
   }
@@ -54,10 +72,11 @@ class EventNew extends React.Component{
         <h3>Make an Event!</h3>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <p><input placeholder='Title' type='text' onChange={this.handleOnChange.bind(this)} name='title' value={this.state.title}/></p>
-          <p><input  placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.state.description}/></p>
-         
+          <p><input placeholder='Description' type='text' onChange={this.handleOnChange.bind(this)} name='description' value={this.state.description}/></p>
           <p><input placeholder='Number of Attendees' type='text' onChange={this.handleOnChange.bind(this)} name='num_attendees' value={this.state.num_attendees}/></p>
-          <p><input type='submit'/></p>
+          <p><DatePicker placeholderText='Event Date' selected={this.state.date} onChange={this.handleChange.bind(this)} showMonthDropdown showYearDropdown/></p>
+          <input type="time" name="usr_time" />
+          <p><input type='submit' width="150"/></p>
         </form>
         < PartyTemplateShow templateID={this.state.party_template_id } />
       </div>

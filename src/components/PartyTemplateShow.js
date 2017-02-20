@@ -26,9 +26,9 @@ class PartyTemplateShow extends Component {
 
 
   render() {
-    
+
     let template = this.props.template
-    
+
 
     if (!template || !template.user) {
       return(<div />)
@@ -51,12 +51,16 @@ class PartyTemplateShow extends Component {
               <div className='col s4'>
                 <a href={`/parties/${template.id}/events/new`} className="waves-effect waves-light btn red-background">Make Event</a>
                </div>
-              
+
               <div className='col s4'>
               {userValidate ? <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a> : null}
               </div>
+
+              <div className='col s12'>
+              {userValidate ? <a href={`/parties/${template.id}/delete`} className="waves-effect waves-light btn red-background">Delete</a> : null}
+              </div>
             </div>
-          
+
           </div>
           <div className="col s6">
           {template.party_picture === '' ? null :
@@ -64,7 +68,7 @@ class PartyTemplateShow extends Component {
               <img className='responsive-img' src={template.party_picture} />
             </div>}
           </div>
-          
+
         </div>
        )
       }
