@@ -4,7 +4,7 @@ import defaultStyles from './defaultStyles'
 const split = string => string.split(" ")
 
 
-const stylizer = ( styles, baseStyles ) => ( ...elements ) => {
+const stylizer = ( styles = {}, baseStyles ) => ( ...elements ) => {
   
   let argType = typeof styles,
       basicStyles = ( baseStyles ? defaultStyles[baseStyles] : defaultStyles.base),

@@ -4,6 +4,7 @@ const styles = {
 
   base: {
     label: 'f5 b db mv2',
+    'input-search':inputBase,
 
     'input-text': inputBase,
     'input-password': inputBase,
