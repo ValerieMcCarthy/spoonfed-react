@@ -33,7 +33,7 @@ class UserShow extends Component {
 
   render() {
     let user = this.state.user
-    debugger
+    
 
     if (!user) {
       return(<div> Sorry, not found! </div>)
@@ -60,14 +60,51 @@ class UserShow extends Component {
        
           </div>
 
+        <div>
+            <br/>
+            <h3> My Party Templates </h3>
+        
+            <ul>
+            {user.party_templates ? (user.party_templates.map((temp, i) => 
+              <li><a href={`/parties/${temp.id}`}><h5>{temp.title}</h5></a>
+                <p>{temp.description}</p>
+                <p>Category: {temp.theme_category}</p>
+                <br/>
+                </li>
+              )) : null}
+         
+            
+            
+            </ul>
+          </div>
+       
 
+        <div>
+            <br/>
+            <h3> My Events </h3>
+        
+            <ul>
+            {user.events ? (user.events.map((eve, i) => 
+              <li><a href={`/events/${eve.id}`}><h5>{eve.title}</h5></a>
+                <p>{eve.description}</p>
+                <p>Category: {user.event_parties[i].theme_category}</p>
+                <br/>
+                </li>
+              )) : null}
+         
+            
+            
+            </ul>
+          </div>
         </div>
+       
+
        )
       }
   }
 }
 
-//moment().format("MMM Do YYYY")
+
 
 
 export default UserShow
