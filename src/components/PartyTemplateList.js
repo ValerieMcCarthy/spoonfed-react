@@ -40,12 +40,12 @@ class PartyTemplateList extends React.Component{
           searchStyle = 'input input-search'
     
     return(
-      <div>
+      <div className='partyTemplateListPage'>
 
         <h3 className='center'> Delightful parties you could be throwing</h3>
         <SearchInput className={searchStyle} onChange={this.updateSearch} />
       
-      <div className="row">
+      <div className="row ">
         { filtered.map( (template, index) => {
         return (
       

@@ -24,7 +24,7 @@ export default class PartyTemplateForm extends React.Component{
   constructor(props){
     super(props)
 
-    const { title, description, theme_category, min_age, max_age, party_picture, items_attributes = [{name:'', description:'', category: '', default_price:''}] } = props.template
+    const { title, description, theme_category, min_age, max_age, party_picture, items_attributes = [] } = props.template
     const parentID = this.props.parentID
 
     this.state = {
@@ -147,13 +147,15 @@ export default class PartyTemplateForm extends React.Component{
           <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.state.theme_category}/></p>
           <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
           <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
+           
+           <button className="waves-effect waves-light btn red-background" onClick={this.handleAddNewItem.bind(this)}>Click to add more items</button>
 
           {this.state.items_attributes.map ((item, index) => {
             return (<PartyItemForm ref={'items_attributes'+index} key={index} id={index}/>)
           })}
 
 
-          <button onClick={this.handleAddNewItem.bind(this)}>Click to add item</button>
+         
 
 
 
@@ -170,7 +172,7 @@ export default class PartyTemplateForm extends React.Component{
                 <p>Drop an image or click to select a file to upload.</p>
               </Dropzone>
             </div>
-          <p><input type='submit'/></p>
+          <p><input className="waves-effect waves-light btn red-background" type='submit'/></p>
 
         </form>
          <div>

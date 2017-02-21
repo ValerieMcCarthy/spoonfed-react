@@ -49,7 +49,7 @@ export default class PartyItemForm extends React.Component{
                   <p><input placeholder="Item Category" category={this.state.item_category} onChange={this.handleCategoryChange.bind(this)}/></p>
                   <p><input placeholder="Default Price" default_price={this.state.default_price} onChange={this.handlePriceChange.bind(this)}/></p>
 
-                  <a className="waves-effect waves-light btn red-background">Add Item</a>
+                  
 
                   <br/>
             </div>

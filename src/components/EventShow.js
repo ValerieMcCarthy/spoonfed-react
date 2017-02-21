@@ -53,14 +53,20 @@ class EventShow extends Component {
     } else {
       let userValidate = (event.user.id == sessionStorage.id)
        return(
-         <div className='row'>
-           <div className="col s6">
-          <h1> Title: { event.title } </h1>
-          <h2> Description: {event.description} </h2>
-          <h3> Number of Attendees: {event.num_attendees} </h3>
-          <h3> Date: {moment(event.date).format("MMM Do YYYY")} </h3>
-          <h3> Start Time: {moment.utc(event.start_time).format('LT')} </h3>
-          <h3> End Time: {moment.utc(event.end_time).format('LT')} </h3>
+        <div className='row'>
+        <br/>
+         <div className="col s6">
+          <h2> Title: { event.title } </h2>
+          <h4> Description: {event.description} </h4>
+          <h4> Number of Attendees: {event.num_attendees} </h4>
+          <h4> Date: {moment(event.date).format("MMM Do YYYY")} </h4>
+          <h4> Start Time: {moment.utc(event.start_time).format('LT')} </h4>
+          <h4> End Time: {moment.utc(event.end_time).format('LT')} </h4>
+
+          <h4> Categogy: {event.party_template.theme_category}</h4>
+
+
+
         <br/>
         <div className="center">
           <div className='col s4'>
@@ -72,10 +78,19 @@ class EventShow extends Component {
           </div>
         <br/>
           {this.state.showPortal && <Portal1 handleClick={this.togglePortal} handleDelete={this.deleteRequest} eventID={event.id}/>}
+           </div>
+        </div>
 
+        <div className="col s6">
+          <div>
+              {event.party_template.party_picture === '' ? null :
+                  <div>
+                    <img className='responsive-img circle' src={event.party_template.party_picture} />
+                  </div>}
+          </div>
         </div>
         </div>
-      </div>
+     
        )
       }
   }

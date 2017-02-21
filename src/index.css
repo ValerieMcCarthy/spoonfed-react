@@ -31,3 +31,13 @@ body {
 .media-width{
 	max-width: 33%
 }
+
+.welcome .card .card-content p{
+	color: black;
+	font-size: 2em;
+
+}
+
+.partyTemplateListPage .card .card-title {
+	text-shadow: 2px 2px 2px black;
+}

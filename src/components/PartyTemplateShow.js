@@ -74,7 +74,7 @@ class PartyTemplateShow extends Component {
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
-
+          <br/>
            <ul>
            <h4> Party Template Items: </h4>
             {template.items ? (template.items.map((temp, i) =>
@@ -94,21 +94,21 @@ class PartyTemplateShow extends Component {
 
           <br/>
            <div className="center">
-              <div className='col s4'>
+              <div className='col s3'>
               <a href={`/parties/new?id=${template.id}`} className="waves-effect waves-light btn red-background">Clone</a>
               </div>
 
-              <div className='col s4'>
+              <div className='col s3'>
                 <a href={`/parties/${template.id}/events/new`} className="waves-effect waves-light btn red-background">Make Event</a>
                </div>
 
-              <div className='col s4'>
+              <div className='col s3'>
               {userValidate ?
                 <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a>
                 : null}
               </div>
 
-              <div className='col s12'>
+              <div className='col s3'>
               {userValidate ? <a href={`/parties/${template.id}/delete`} className="waves-effect waves-light btn red-background" onClick={this.togglePortal}>Delete</a> : null}
               </div>
             </div>

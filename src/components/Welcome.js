@@ -4,7 +4,7 @@ import React from 'react'
 
 export default function Welcome(){
   return(
-    <div className='container center'>
+    <div className='container center welcome'>
       <h2>SpoonFed</h2>
       <h4 className='italic'>Bringing inspiration to your parties </h4>
 
@@ -16,10 +16,10 @@ export default function Welcome(){
       <div className="card small">
         <div className="card-image">
           <img src="https://res.cloudinary.com/projects/image/upload/v1487269053/sample.jpg"/>
-          <span className="card-title">Inspiration</span>
+          <span className="card-title"></span>
         </div>
-        <div class="card-content">
-          <p>Access to wealth of creativity</p>
+        <div className="card-content">
+          <p>Inspiration</p>
         </div>
       </div>
     </div>
@@ -28,10 +28,10 @@ export default function Welcome(){
       <div className="card small">
         <div className="card-image">
           <img src="https://res.cloudinary.com/projects/image/upload/v1487343851/fw5wzo0gi5khex8fawnr.jpg"/>
-          <span className="card-title center">Action</span>
+          <span className="card-title center"></span>
         </div>
-        <div class="card-content">
-          <p>The time is now</p>
+        <div className="card-content">
+          <p>Action</p>
         </div>
       </div>
     </div>
@@ -40,10 +40,10 @@ export default function Welcome(){
       <div className="card small">
         <div className="card-image">
           <img src="https://res.cloudinary.com/projects/image/upload/v1487354289/porvt2ov4ftpkzlggj4t.jpg"/>
-          <span className="card-title">Organization</span>
+          <span className="card-title"></span>
         </div>
-        <div class="card-content">
-          <p>Keeping your ducks in a row</p>
+        <div className="card-content">
+          <p>Organization</p>
         </div>
       </div>
     </div>
