@@ -13,6 +13,9 @@ class EventEditForm extends Component {
 
 componentWillReceiveProps(nextProps) {
     this.setState( nextProps.event )
+    if (!(nextProps.event.user.id === sessionStorage.id)){
+      browserHistory.push(`/events/${nextProps.event.id}`)
+    }
   }
 
   constructor(props){
@@ -90,6 +93,7 @@ componentWillReceiveProps(nextProps) {
           <p><DatePicker placeholderText='Event Date' selected={this.state.date} onChange={this.handleChange.bind(this)} showMonthDropdown showYearDropdown/></p>
           <p><input type='submit' width="150"/></p>
         </form>
+
       </div>
 
       )

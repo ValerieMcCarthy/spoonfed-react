@@ -8,12 +8,15 @@ class PartyTemplateEditForm extends Component {
 
 componentWillReceiveProps(nextProps) {
     this.setState( nextProps.template )
+    if (!(nextProps.template.user.id === sessionStorage.id)){
+      browserHistory.push(`/parties/${nextProps.template.id}`)
+    }
   }
 
   constructor(props){
     super(props)
-    const { title, description, theme_category, min_age, max_age, id } = props.template 
-      
+    const { title, description, theme_category, min_age, max_age, id } = props.template
+
     this.state = {
       title,
       description,
@@ -75,7 +78,7 @@ componentWillReceiveProps(nextProps) {
       </div>
 
       )
-  
+
 }
 }
 
