@@ -69,6 +69,23 @@ class PartyTemplateShow extends Component {
           <h4> Description: {template.description} </h4>
           <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
           <h4> Party Template Creator: {template.user.name} </h4>
+
+           <ul>
+           <h4> Party Template Items: </h4>
+            {template.items ? (template.items.map((temp, i) =>
+              <li><h5>{temp.name}</h5>
+                <p>{temp.description}</p>
+                <p>Category: {temp.item_category}</p>
+                <p>Category: {temp.default_price}</p>
+                <br/>
+                </li>
+              )) : null}
+
+
+
+            </ul>
+
+
           <br/>
            <div className="center">
               <div className='col s4'>

@@ -7,22 +7,30 @@ import { bindActionCreator } from 'redux'
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 import { addTemplate } from '../actions'
+import PartyItemForm from './PartyItemForm'
 
 const CLOUDINARY_UPLOAD_PRESET = 'SpoonfedPartyTemplate';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/projects/upload';
 
 
 
-class PartyTemplateForm extends React.Component{
+export default class PartyTemplateForm extends React.Component{
 
-  componentWillReceiveProps(nextProps) {
-    this.setState( nextProps.template )
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState( nextProps.template )
+  // }
+
+  //  componentDidMount(){
+  //   this.props.fetchitems_attributes()
+  //   //goes through and finds all items_attributes attached to this party template
+  //   //updates state.items_attributes
+  // }
+
 
   constructor(props){
     super(props)
-   
-    const { title, description, theme_category, min_age, max_age, party_picture } = props.template 
+    
+    const { title, description, theme_category, min_age, max_age, party_picture, items_attributes} = props.template 
       
     this.state = {
       title,
@@ -31,6 +39,7 @@ class PartyTemplateForm extends React.Component{
       min_age,
       max_age,
       party_picture,
+      items_attributes: [{name:'', description:'', category: '', default_price:''}],
       uploadedFile: null,
       uploadedFileCloudinaryUrl: ''
     }
@@ -70,9 +79,19 @@ class PartyTemplateForm extends React.Component{
   }
 
   handleSubmit(event){
-
     event.preventDefault()
-    this.props.addTemplate(this.state)
+    let curr = this
+    let itemArray = []
+    curr.state.items_attributes.map((item, index) => {
+      let curItem = curr.refs['items_attributes'+index]
+      itemArray = [...itemArray, curItem.state]
+      
+      
+    })
+    let curState = this.state
+    curState.items_attributes = itemArray
+    
+    this.props.addTemplate(curState)
   }
 
 
@@ -103,10 +122,27 @@ class PartyTemplateForm extends React.Component{
         max_age: event.target.value
       })
       break
+      
   	}
   }
 
+  // handleItemChange(event){
+    
+  //   event.preventDefault()
+  //   this.setState({items_attributes: [...this.state.inputs, event]})
+  // }
+
+  handleAddNewItem(event){
+    event.preventDefault()
+    
+    this.setState({items_attributes: [...this.state.items_attributes, {name:'', description:'', category: '', default_price:''}]})
+
+  }
+
+
+
   render(){
+    
     return(
       <div>
         <h3>Make a Party Template!</h3>
@@ -116,7 +152,22 @@ class PartyTemplateForm extends React.Component{
           <p><input placeholder='Theme Category' type='text' onChange={this.handleOnChange.bind(this)} name='theme_category' value={this.state.theme_category}/></p>
           <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
           <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
+
+          {this.state.items_attributes.map ((item, index) => {
+            return (<PartyItemForm ref={'items_attributes'+index} key={index} id={index}/>)
+          })}
+          
+        
+          <button onClick={this.handleAddNewItem.bind(this)}>Click to add item</button>
+
+         
+          
+         
+
+
             <div className='FileUpload'>
+              <br/>
+              <br/>
               <Dropzone
                 multiple={false}
                 accept="image/*"
@@ -141,9 +192,3 @@ class PartyTemplateForm extends React.Component{
 
 }
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators( { addTemplate }, dispatch )
-}
-
-
-export default connect(null, mapDispatchToProps)(PartyTemplateForm)
