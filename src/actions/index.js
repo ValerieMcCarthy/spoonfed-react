@@ -20,6 +20,21 @@ const templateEdit = (response) => {
 						payload: response
 					}
 }
+export const editEvent = (event) => {
+	return (dispatch) => {
+		axios.patch( URL + `/events/${event.id}` , event )
+			.then( response =>  {
+				dispatch( eventEdit(response.data) ),
+				browserHistory.push(`/event/${event.id}`)
+				} )
+	}
+}
+
+const eventEdit = (response) => {
+	return { type: "SUCCESSFUL_EDIT",
+						payload: response
+					}
+}
 
 export const fetchTemplates = () => {
 	return (dispatch) => {
@@ -153,13 +168,6 @@ function failedUpdateCurrentTemplate(err){
 		}
 	}
 }
-
-function setTemplate(response){
-	return {
-		type: 'SET_TEMPLATE',
-		payload: response.data
-	}
-}
 export function updateCurrentEvent(id){
 		return (dispatch) => {
 			axios.get(URL + `/events/` + id).then(response => (dispatch(setEvent(response)))).catch( (err) => dispatch(failedUpdateCurrentEvent(err)))
@@ -171,12 +179,18 @@ function failedUpdateCurrentEvent(err){
 	return {
 		type: 'GROWLER__SHOW',
 		growler: {
-			text: 'Could not retrieve the current event.',
+			text: 'Error. Could not find that event.',
 			type: 'growler--error'
 		}
 	}
 }
 
+function setTemplate(response){
+	return {
+		type: 'SET_TEMPLATE',
+		payload: response.data
+	}
+}
 function setEvent(response){
 	return {
 		type: 'SET_EVENT',

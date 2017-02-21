@@ -6,6 +6,7 @@ import sessionsReducer from './sessionsReducer'
 import currentPartyTemplateReducer from './currentPartyTemplateReducer'
 import eventReducer from './eventReducer'
 import growlerReducer  from './growlerReducer';
+import currentEventReducer from './currentEventReducer'
 
 
 
@@ -18,7 +19,7 @@ const rootReducer = combineReducers({
 	errors: errorsReducer,
   session: sessionsReducer,
   currentPartyTemplate: currentPartyTemplateReducer,
-  event: eventReducer,
+  event: currentEventReducer
 })
 
 export default rootReducer;

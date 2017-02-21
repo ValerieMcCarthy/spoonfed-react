@@ -11,6 +11,7 @@ import PartyTemplateEdit from './components/PartyTemplateEdit'
 import UserShow from './components/UserShow'
 import EventNew from './components/EventNew'
 import EventShow from './components/EventShow'
+import EventEdit from './components/EventEdit'
 import { requireAuth, requireAuthRedirectToShow, requireAuthForProfile } from './actions/'
 
 
@@ -28,6 +29,7 @@ export default (
 	  <Route path='parties/:id/edit' component={ PartyTemplateEdit } onEnter={requireAuthRedirectToShow} />
 	  <Route path='parties/:id/events/new' component={ EventNew } onEnter={requireAuthRedirectToShow} />
 	  <Route path='events/:id' component={ EventShow } />
+	  <Route path='events/:id/edit' component={ EventEdit } />
 
 
 	  <Route path='profile' component={UserShow} onEnter={requireAuth.bind('/')} />

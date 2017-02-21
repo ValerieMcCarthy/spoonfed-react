@@ -71,13 +71,13 @@ class UserShow extends Component {
             <h3> My Party Templates </h3>
 
             <ul>
-            {user.party_templates ? (user.party_templates.map((temp, i) =>
+            {user.party_templates && (user.party_templates.map((temp, i) =>
               <li><a href={`/parties/${temp.id}`}><h5>{temp.title}</h5></a>
                 <p>{temp.description}</p>
                 <p>Category: {temp.theme_category}</p>
                 <br/>
                 </li>
-              )) : null}
+              )) }
 
 
 
