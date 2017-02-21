@@ -9,11 +9,11 @@ import { bindActionCreator } from 'redux'
 export default class PartyItemForm extends React.Component{
 
  constructor(props){
- 	
+
     super(props)
-   
-    // const { name, description, category, default_price } = props.item 
-      
+
+    // const { name, description, category, default_price } = props.item
+
     this.state = {
       name: '',
       description: '',
@@ -40,7 +40,7 @@ export default class PartyItemForm extends React.Component{
 
 
  	render(){
-    
+
     	return(
     		<div>
                   <h5> New Item </h5>
@@ -48,9 +48,9 @@ export default class PartyItemForm extends React.Component{
                   <p><input placeholder="Item Description" description={this.state.description} onChange={this.handleDescriptionChange.bind(this)}/></p>
                   <p><input placeholder="Item Category" category={this.state.item_category} onChange={this.handleCategoryChange.bind(this)}/></p>
                   <p><input placeholder="Default Price" default_price={this.state.default_price} onChange={this.handlePriceChange.bind(this)}/></p>
-             
+
                   <a className="waves-effect waves-light btn red-background">Add Item</a>
-                
+
                   <br/>
             </div>
 

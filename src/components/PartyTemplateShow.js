@@ -50,6 +50,10 @@ class PartyTemplateShow extends Component {
     {browserHistory.push('/parties')})
   }
 
+  handleDeleteItem(id){
+    axios.delete(`http://localhost:3000/api/v1/party_items/${this}/${id}`).then(response =>
+    {browserHistory.push(`/parties/`),(browserHistory.push(`/parties/${id}`))})
+  }
 
 
   render() {
@@ -61,6 +65,7 @@ class PartyTemplateShow extends Component {
       return(<div />)
     } else {
       let userValidate = (template.user.id == sessionStorage.id)
+      const templateID = template.id
        return(
         <div className='row'>
           <div className="col s6">
@@ -73,10 +78,11 @@ class PartyTemplateShow extends Component {
            <ul>
            <h4> Party Template Items: </h4>
             {template.items ? (template.items.map((temp, i) =>
-              <li><h5>{temp.name}</h5>
+              <li key={i}><h5>{temp.name}</h5>
                 <p>{temp.description}</p>
                 <p>Category: {temp.item_category}</p>
                 <p>Category: {temp.default_price}</p>
+                <button onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete</button>
                 <br/>
                 </li>
               )) : null}

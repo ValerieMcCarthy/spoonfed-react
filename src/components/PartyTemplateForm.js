@@ -16,22 +16,17 @@ const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/projects/upload';
 
 export default class PartyTemplateForm extends React.Component{
 
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState( nextProps.template )
-  // }
-
-  //  componentDidMount(){
-  //   this.props.fetchitems_attributes()
-  //   //goes through and finds all items_attributes attached to this party template
-  //   //updates state.items_attributes
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.setState( nextProps.template )
+  }
 
 
   constructor(props){
     super(props)
-    
-    const { title, description, theme_category, min_age, max_age, party_picture, items_attributes} = props.template 
-      
+
+    const { title, description, theme_category, min_age, max_age, party_picture, items_attributes = [{name:'', description:'', category: '', default_price:''}] } = props.template
+    const parentID = this.props.parentID
+
     this.state = {
       title,
       description,
@@ -39,20 +34,21 @@ export default class PartyTemplateForm extends React.Component{
       min_age,
       max_age,
       party_picture,
-      items_attributes: [{name:'', description:'', category: '', default_price:''}],
+      items_attributes,
       uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
+      uploadedFileCloudinaryUrl: '',
+      parentID
     }
  }
 
   onImageDrop(files) {
-    
+
     this.setState({
       uploadedFile: files[0]
     });
 
     this.handleImageUpload(files[0]);
-    
+
   }
 
    handleImageUpload(file) {
@@ -67,12 +63,12 @@ export default class PartyTemplateForm extends React.Component{
       }
 
       if (response.body.secure_url !== '') {
-        
+
         curr.setState({
           uploadedFileCloudinaryUrl: response.body.secure_url,
           party_picture: response.body.secure_url
         });
-      
+
       }
     });
 
@@ -85,12 +81,12 @@ export default class PartyTemplateForm extends React.Component{
     curr.state.items_attributes.map((item, index) => {
       let curItem = curr.refs['items_attributes'+index]
       itemArray = [...itemArray, curItem.state]
-      
-      
+
+
     })
     let curState = this.state
     curState.items_attributes = itemArray
-    
+
     this.props.addTemplate(curState)
   }
 
@@ -122,19 +118,19 @@ export default class PartyTemplateForm extends React.Component{
         max_age: event.target.value
       })
       break
-      
+
   	}
   }
 
   // handleItemChange(event){
-    
+
   //   event.preventDefault()
   //   this.setState({items_attributes: [...this.state.inputs, event]})
   // }
 
   handleAddNewItem(event){
     event.preventDefault()
-    
+
     this.setState({items_attributes: [...this.state.items_attributes, {name:'', description:'', category: '', default_price:''}]})
 
   }
@@ -142,7 +138,6 @@ export default class PartyTemplateForm extends React.Component{
 
 
   render(){
-    
     return(
       <div>
         <h3>Make a Party Template!</h3>
@@ -156,13 +151,13 @@ export default class PartyTemplateForm extends React.Component{
           {this.state.items_attributes.map ((item, index) => {
             return (<PartyItemForm ref={'items_attributes'+index} key={index} id={index}/>)
           })}
-          
-        
+
+
           <button onClick={this.handleAddNewItem.bind(this)}>Click to add item</button>
 
-         
-          
-         
+
+
+
 
 
             <div className='FileUpload'>
@@ -176,7 +171,7 @@ export default class PartyTemplateForm extends React.Component{
               </Dropzone>
             </div>
           <p><input type='submit'/></p>
-         
+
         </form>
          <div>
           {this.state.uploadedFileCloudinaryUrl === '' ? null :
@@ -191,4 +186,3 @@ export default class PartyTemplateForm extends React.Component{
   }
 
 }
-

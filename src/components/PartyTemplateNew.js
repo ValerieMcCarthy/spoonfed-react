@@ -13,14 +13,15 @@ class PartyTemplateNew extends React.Component{
 
     super(props)
     if (props.location.query.id ){
-    props.updateCurrentTemplate(props.location.query.id)
+      this.parentID = props.location.query.id
+      props.updateCurrentTemplate(props.location.query.id)
   }
   }
 
 
   render(){
-    
-      return <PartyTemplateForm addTemplate={ this.props.addTemplate } template={this.props.template} />
+
+      return <PartyTemplateForm addTemplate={ this.props.addTemplate } template={this.props.template} parentID={this.parentID}/>
 
   }
 

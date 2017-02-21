@@ -13,7 +13,7 @@ class PartyTemplateEdit extends React.Component{
     super(props)
 
     if (props.routeParams.id){
-
+      debugger
     props.updateCurrentTemplate(props.routeParams.id)
   }
   }
