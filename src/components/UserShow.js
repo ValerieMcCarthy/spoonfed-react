@@ -53,20 +53,8 @@ class UserShow extends Component {
           <h5> Gender: { user.gender } </h5>
           <h5> Date of birth: { moment(user.date_of_birth).format("MMM Do YYYY") } </h5>
           <h5> Bio: { user.bio } </h5>
-          </div>
-          <div className="col s6">
-
-              <div>
-              {user.user_profile_picture === '' ? null :
-                  <div>
-                    <img className='responsive-img circle' src={user.user_profile_picture} />
-                  </div>}
-              </div>
-
-
-          </div>
-
-        <div>
+          
+          <div>
             <br/>
             <h3> My Party Templates </h3>
 
@@ -101,6 +89,20 @@ class UserShow extends Component {
 
             </ul>
           </div>
+          </div>
+          <div className="col s6">
+
+              <div>
+              {user.user_profile_picture === '' ? null :
+                  <div>
+                    <img className='responsive-img circle' src={user.user_profile_picture} />
+                  </div>}
+              </div>
+
+
+          </div>
+
+        
         </div>
 
 
