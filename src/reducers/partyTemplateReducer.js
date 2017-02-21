@@ -4,6 +4,8 @@ const partyTemplateReducer = ( state=[], action) => {
       return action.payload
     case "ADD_TEMPLATE":
       return [...state, action.payload]
+     case "ADD_ITEM":
+     	return action.payload
     default:
       return state
   }

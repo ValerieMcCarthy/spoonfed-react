@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { bindActionCreator } from 'redux'
 import PartyTemplateForm from './PartyTemplateForm'
-import { updateCurrentTemplate } from '../actions'
+import { updateCurrentTemplate, addTemplate } from '../actions'
 
 
 
 class PartyTemplateNew extends React.Component{
   constructor(props){
+
     super(props)
     if (props.location.query.id ){
     props.updateCurrentTemplate(props.location.query.id)
@@ -18,7 +19,8 @@ class PartyTemplateNew extends React.Component{
 
 
   render(){
-      return <PartyTemplateForm template={this.props.template} />
+    
+      return <PartyTemplateForm addTemplate={ this.props.addTemplate } template={this.props.template} />
 
   }
 
@@ -32,7 +34,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ updateCurrentTemplate }, dispatch )
+  return bindActionCreators({ updateCurrentTemplate, addTemplate }, dispatch )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PartyTemplateNew)

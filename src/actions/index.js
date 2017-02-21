@@ -115,13 +115,15 @@ export function logoutUser(){
 }
 
 export function addTemplate(template){
-
+	debugger
 	return (dispatch) => {
 		axios.post( URL + '/party_templates', template).then( response => (dispatch(successfulAddTemplate(response)),
 			browserHistory.push(`/parties/${response.data.id}`)))
 			.catch( (err) => dispatch(failedAddTemplate(err)))
 		}
 }
+
+
 
 function successfulAddTemplate(response){
 	return {
@@ -136,6 +138,13 @@ function failedAddTemplate(err){
 		payload: 'Could not create a new template.'
 	}
 }
+
+// export function addItem(newItem){
+// 	return{
+// 		type: 'ADD_ITEM'
+// 		payload: newItem
+// 	}
+// }
 
 export function updateCurrentTemplate(id){
 		return (dispatch) => {
