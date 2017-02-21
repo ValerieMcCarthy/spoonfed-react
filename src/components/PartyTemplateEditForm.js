@@ -8,7 +8,8 @@ class PartyTemplateEditForm extends Component {
 
 componentWillReceiveProps(nextProps) {
     this.setState( nextProps.template )
-    if (!(nextProps.template.user.id === sessionStorage.id)){
+    debugger
+    if (!(nextProps.template.user.id == sessionStorage.id)){
       browserHistory.push(`/parties/${nextProps.template.id}`)
     }
   }

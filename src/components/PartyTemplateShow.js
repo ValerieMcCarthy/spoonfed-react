@@ -80,7 +80,9 @@ class PartyTemplateShow extends Component {
                </div>
 
               <div className='col s4'>
-              {userValidate ? <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a> : null}
+              {userValidate ?
+                <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a>
+                : null}
               </div>
 
               <div className='col s12'>

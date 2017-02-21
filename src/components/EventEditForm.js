@@ -13,7 +13,7 @@ class EventEditForm extends Component {
 
 componentWillReceiveProps(nextProps) {
     this.setState( nextProps.event )
-    if (!(nextProps.event.user.id === sessionStorage.id)){
+    if (!(nextProps.event.user.id == sessionStorage.id)){
       browserHistory.push(`/events/${nextProps.event.id}`)
     }
   }
