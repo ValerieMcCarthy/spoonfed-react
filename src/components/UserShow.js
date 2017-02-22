@@ -66,9 +66,9 @@ class UserShow extends Component {
             <br/>
             <h3> My Party Templates </h3>
 
-            <ul>
+            <ul className="list ph0 mh0">
             {user.party_templates ? (user.party_templates.map((temp, i) =>
-              <li><a href={`/parties/${temp.id}`}><h5>{temp.title}</h5></a>
+              <li className='mh0 ph0'><a href={`/parties/${temp.id}`}><h5>{temp.title}</h5></a>
                 <p>{temp.description}</p>
                 <p>Category: {temp.theme_category}</p>
                 <br/>
@@ -83,12 +83,11 @@ class UserShow extends Component {
 
         <div>
             <br/>
-            {userValidate && <h3>My Events</h3>}
-            <ul>
-            {userValidate ? user.events ? (user.events.map((eve, i) =>
-              <li><a href={`/events/${eve.id}`}><h5>{eve.title}</h5></a>
-                <p>{eve.description}</p>
-                <p>Category: {user.event_parties[i].theme_category}</p>
+            {userValidate && <h3 id='myparties'>My Parties</h3>}
+            <ul className="list">
+            {userValidate ? user.parties ? (user.parties.map((party, i) =>
+              <li className='mh0 ph0'><a href={`/party/${party.id}`}><h5>{party.title}</h5></a>
+                <p>{party.description}</p>
                 <br/>
                 </li>
               )) : null : null}

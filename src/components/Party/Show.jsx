@@ -40,7 +40,7 @@ class PartyShow extends Component {
   }
 
   onBlur(inputKey) {
-    
+
 
     const that = this
 
@@ -49,16 +49,16 @@ class PartyShow extends Component {
         let party = {}
         party[inputKey] = event.target.value
         axios.patch(`http://localhost:3000/api/v1/parties/${that.props.template.id}`, party)
-        
 
-        
-    
+
+
+
   }
 
 }
 
 addItems(){
-  
+
 }
 
 
@@ -68,7 +68,7 @@ addItems(){
 
   deleteRequest(event){
     event.preventDefault()
-    axios.delete(`http://localhost:3000/api/v1/party_templates/${this.props.params.id}`).then(response =>
+    axios.delete(`http://localhost:3000/api/v1/parties/${this.props.params.id}`).then(response =>
     {browserHistory.push('/parties')})
   }
 
@@ -95,24 +95,24 @@ addItems(){
       const templateID = template.id
        return(
         <div className='row'>
-         
-           { userValidate && 
+
+           { userValidate &&
             <header>
-              <input type="text" className="lh-title" placeholder="Title" onBlur={this.onBlur('title')} defaultValue={template.title}  /> 
+              <input type="text" className="lh-title" placeholder="Title" onBlur={this.onBlur('title')} defaultValue={template.title}  />
               <p><span class="label">Description:</span> <textarea onBlur={this.onBlur('description')} defaultValue={template.description} className="f4 db w-100"/>  </p>
             </header>
-           
+
            }
            { !userValidate &&
-            <header> 
+            <header>
               <h1 className='lh-title'>{template.title}</h1>
               <p className="f4 db w-100">{template.description}</p>
             </header>
            }
 
           <div className='pa4'> Made with ❤ by: { template.user.user_profile_picture &&  <img className='br-100 pa1 ba b--black-10 h3 w3 profile-picture' src={template.user.user_profile_picture} alt={template.user.name} /> } {template.user.name } </div>
-         
-          
+
+
            <h4> What you'll need: </h4>
            { template.item_categories && !userValidate &&
             <ul className="list pl0 measure center">
@@ -130,29 +130,30 @@ addItems(){
 
 
             })}
-            
-          
+
+
             </div>
 
-           
+
           }
 
 
-          
+
 
 
           <br/>
            <div className="center">
-            {!userValidate && 
+            {!userValidate &&
               <div className='col s3'>
               <Link to={`/parties/${template.id}/new`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Throw This Party</Link>
               </div>
             }
 
-
-              <div className='col s3'>
-              {userValidate ? <Link to={`/parties/${template.id}/delete`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.togglePortal}>Delete The Memory</Link> : null}
+            <div className='col s3'>
+            {userValidate ? <Link to={`/profile#myparties`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Save</Link> : null}
+            {userValidate ? <Link to={`/parties/${template.id}/delete`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.togglePortal}>Delete The Memory</Link> : null}
               </div>
+
             </div>
 
           <div className="col s6">

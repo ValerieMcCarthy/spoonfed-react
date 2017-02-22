@@ -71,30 +71,41 @@ class PartyTemplateShow extends Component {
         <div>
 
 
-        
+
 
 
 
           <div className="mw9 center ph3-ns cf">
-         
+
 
               <div className="fl w-100 w-50-ns pa2">
-               
+
                   <div>
                     <div className='f-subheadline lh-title'> { template.title } </div>
+                    <div className='col s3'>
+                    <a href={`/parties/new?id=${template.id}`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Clone</a>
+
+                      <a href={`/parties/${template.id}/events/new`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Make Event</a>
+
+                    {userValidate ?
+                      <a href={`/parties/${template.id}/edit`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Edit</a>
+                      : null}
+
+                    {userValidate ? <a href={`/parties/${template.id}/delete`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.togglePortal}>Delete</a> : null}
+                    </div>
                     <p> Category: {template.theme_category} </p>
                     <h4> Description: {template.description} </h4>
                     <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
                     <h4> Party Template Creator: {template.user.name} </h4>
-                    
+
 
                     </div>
-                  
+
               </div>
 
 
                 <div className="fl w-100 w-50-ns pa2">
-            
+
                     <div>
                     {template.party_picture === '' ? null :
                       <div>
@@ -104,7 +115,7 @@ class PartyTemplateShow extends Component {
                   {this.state.showPortal && <Portal handleClick={this.togglePortal} handleDelete={this.deleteRequest} templateId={template.id}/>}
                 </div>
             </div>
-            
+
          <br/>
                   <div className="mw9 center ph3-ns">
                      <ul>
@@ -123,29 +134,13 @@ class PartyTemplateShow extends Component {
 
                       <br/>
                        <div className="center">
-                          <div className='col s3'>
-                          <a href={`/parties/new?id=${template.id}`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Clone</a>
-                          </div>
-
-                          <div className='col s3'>
-                            <a href={`/parties/${template.id}/events/new`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Make Event</a>
-                           </div>
-
-                          <div className='col s3'>
-                          {userValidate ?
-                            <a href={`/parties/${template.id}/edit`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Edit</a>
-                            : null}
-                          </div>
-
-                          <div className='col s3'>
-                          {userValidate ? <a href={`/parties/${template.id}/delete`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.togglePortal}>Delete</a> : null}
-                          </div>
+                          
                         </div>
                         </div>
 
 
 
-        </div>         
+        </div>
        )
       }
   }

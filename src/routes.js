@@ -32,6 +32,7 @@ export default (
 		<Route path='parties/new' component={PartyTemplateNew} onEnter={requireAuth.bind('/parties')} />
 
 		  <Route path='party/:id' component={PartyShow} />
+		  <Route path='parties/:id' component={PartyTemplateShow} />
 		  <Route path='parties/:id/edit' component={ PartyTemplateEdit } onEnter={requireAuth.bind('/signup')} />
 		  <Route path='parties/:id/events/new' component={ EventNew } onEnter={requireAuthRedirectToShow} />
 		  <Route path='events/:id' component={ EventShow } />

@@ -45,8 +45,9 @@ class Header extends React.Component {
         path: '/parties'
       },
       {
-        title: 'How it Works',
-        path: '/about'
+        title: 'Plan your Party',
+        path: '/parties/quiz',
+        loggedIn: true
       },
       {
         title: 'Sign Up',
