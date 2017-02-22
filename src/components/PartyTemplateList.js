@@ -28,21 +28,22 @@ class PartyTemplateList extends React.Component{
   updateSearch(term) {
     this.setState({
       searchTerm: term
-    })    
+    })
   }
 
   render(){
-    
+
   const filters = ['title', 'description'],
         templates = this.props.partyTemplates,
         featured = templates.slice(0, 4),
         filtered = templates.filter(createFilter(this.state.searchTerm, filters)),
           searchStyle = 'input input-search'
-    
+
     return(
-      <div className='partyTemplateListPage'>
+      <div className='partyTemplateListPage tc'>
 
         <h3 className='tc'> Delightful parties you could be throwing</h3>
+
         <SearchInput  type='text' className={searchStyle} onChange={this.updateSearch} />
       
         <div className="mw9 center ph3-ns">
@@ -77,18 +78,19 @@ class PartyTemplateList extends React.Component{
                 })}
               </div>
             </div>
+
        {this.props.children}
       </div>
       )
   }
- 
+
 }
 
 
- 
+
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchTemplates }, dispatch )  
+  return bindActionCreators({ fetchTemplates }, dispatch )
 }
 
 function mapStateToProps(state){

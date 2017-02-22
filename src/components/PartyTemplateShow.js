@@ -67,7 +67,9 @@ class PartyTemplateShow extends Component {
       let userValidate = (template.user.id == sessionStorage.id)
       const templateID = template.id
        return(
+
         <div>
+
 
         
 
@@ -112,7 +114,7 @@ class PartyTemplateShow extends Component {
                               <p>{temp.description}</p>
                               <p>Category: {temp.item_category}</p>
                               <p>Category: {temp.default_price}</p>
-                              <button className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete Item</button>
+{userValidate && <button className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete Item</button>}
                               <br/>
                               </li>
                             )) : null}

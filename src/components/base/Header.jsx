@@ -21,19 +21,24 @@ class Header extends React.Component {
       return false
     } else if (item.loggedOut && session ) {
       return false
-    } 
+    }
       return true
   }
 
 
 
-  
+
   render() {
-    
+
     const navLinks = [
       {
         title: 'Home',
-        path: '/' 
+        path: '/'
+      },
+      {
+        title: 'Profile',
+        path: '/profile',
+        loggedIn: true
       },
       {
         title: 'Browse Parties',
@@ -63,7 +68,7 @@ class Header extends React.Component {
 
     return(
       <nav className='header--nav fl w-20-ns pv2' >
-        <Link to='/' className='header--link logo--link'>
+        <Link to='/' className='header--link logo--link tc v-mid'>
           SpoonFed
         </Link>
         <div className='header--links tc' >
@@ -73,20 +78,20 @@ class Header extends React.Component {
               let linkPosition = (item.index === ( navLinks.length - 1) ? 'header--link-last' : 'header--link')
               if( this.showMenuItem(item, this.props.session) ){
                 return (
-                  <Link key={index} 
-                        to={item.path} 
-                        title={item.title} 
-                        onClick={item.action} 
+                  <Link key={index}
+                        to={item.path}
+                        title={item.title}
+                        onClick={item.action}
                         className={`db pa3 f3 hover-light-purple lh-copy ${linkPosition} ${active}`} >
                     {item.title}
                   </Link>
               )
               }
-              return '' 
+              return ''
             })}
-        
-          
-         
+
+
+
         </div>
       </nav>
       )
