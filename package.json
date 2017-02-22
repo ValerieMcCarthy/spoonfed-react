@@ -24,12 +24,18 @@
     "redux": "^3.6.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.4.3"
+    "superagent": "^3.4.3",
+    "tachyons": "^4.6.2",
+    "tachyons-cli": "^1.0.10"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+     "tach:css": "tachyons src/tachyons-custom/src/tachyons.css > src/css/tachyons.css --minify",
+    "prestart": "npm run tach:css",
+    "prebuild": "npm run tach:css",
+    "tach:watch": "watch 'npm run tach:css' ./src/tachyons-custom/src"
   }
 }
