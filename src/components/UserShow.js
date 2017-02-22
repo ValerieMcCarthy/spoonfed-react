@@ -45,8 +45,16 @@ class UserShow extends Component {
     } else {
       let userValidate = (user.id == sessionStorage.id)
        return(
-        <div className='row'>
-          <div className="col s6">
+        <div className='mw5 mw7-ns center tc bg-near-white pa3 ph5-ns'>
+          <div className="col s6 center">
+          <div>
+          {user.user_profile_picture === '' ? null :
+              <div className='tc pa4 h3'>
+                <img src={user.user_profile_picture} className="br-100 pa1 ba b--black-10 h4 w4" alt="avatar" />
+              </div>}
+          </div>
+        <br/>
+        <br/>
           <h3> { user.name } </h3>
           <h5> Email: { user.email } </h5>
           <h5> Zip Code: { user.zipcode } </h5>
@@ -91,13 +99,6 @@ class UserShow extends Component {
           </div>
           </div>
           <div className="col s6">
-
-              <div>
-              {user.user_profile_picture === '' ? null :
-                  <div>
-                    <img className='responsive-img circle' src={user.user_profile_picture} />
-                  </div>}
-              </div>
 
 
           </div>

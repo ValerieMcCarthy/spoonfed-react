@@ -82,7 +82,7 @@ class PartyTemplateShow extends Component {
                 <p>{temp.description}</p>
                 <p>Category: {temp.item_category}</p>
                 <p>Category: {temp.default_price}</p>
-                <button onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete</button>
+                {userValidate && <button onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete</button>}
                 <br/>
                 </li>
               )) : null}

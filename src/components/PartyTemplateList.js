@@ -28,33 +28,33 @@ class PartyTemplateList extends React.Component{
   updateSearch(term) {
     this.setState({
       searchTerm: term
-    })    
+    })
   }
 
   render(){
-    
+
   const filters = ['title', 'description'],
         templates = this.props.partyTemplates,
         featured = templates.slice(0, 4),
         filtered = templates.filter(createFilter(this.state.searchTerm, filters)),
           searchStyle = 'input input-search'
-    
-    return(
-      <div className='partyTemplateListPage'>
 
-        <h3 className='center'> Delightful parties you could be throwing</h3>
+    return(
+      <div className='partyTemplateListPage tc'>
+
+        <h3 className='tc'> Delightful parties you could be throwing</h3>
         <SearchInput className={searchStyle} onChange={this.updateSearch} />
-      
+
       <div className="row ">
         { filtered.map( (template, index) => {
         return (
-      
 
-        <div className="col s4 key={index}">
+
+        <div className="col s4 key={index} tc">
           <div className="card medium">
             <div className="card-image">
-              <img src={template.party_picture} />
-
+              <img src={template.party_picture} className="tc pa1 ba b--black-10" />
+            <br/>
               <span className="card-title">{template.title}</span>
             </div>
             <div className='card-content'>
@@ -62,27 +62,27 @@ class PartyTemplateList extends React.Component{
                {template.description}</p>
             </div>
             <div className="card-action grey lighten-2">
-                <a href={`/parties/${template.id}`}>Learn More</a>
+                <a href={`/parties/${template.id}`}>Learn More</a><span> </span>
                 <a className= 'right' href={`/parties/new?id=${template.id}`}>Clone</a>
-                
+
               </div>
             </div>
           </div> )
           } )}
         </div>
-     
+
        {this.props.children}
       </div>
       )
   }
- 
+
 }
 
 
- 
+
 
 function mapDispatchToProps(dispatch){
-  return bindActionCreators({ fetchTemplates }, dispatch )  
+  return bindActionCreators({ fetchTemplates }, dispatch )
 }
 
 function mapStateToProps(state){
