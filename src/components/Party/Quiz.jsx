@@ -71,7 +71,7 @@ export default class Quiz extends React.Component {
     const { location, num_attendees, items} = this.state,
           item_categories_attributes  = items
 
-    axios.post('http://localhost:3000/api/v1/parties', { party: {location, num_attendees, item_categories_attributes} } )
+    axios.post('http://localhost:3000/api/v1/parties', { party: {location, num_attendees, item_categories_attributes} } ).then( response => browserHistory.push(`/party/${response.data.id}`))
 
   }
 
