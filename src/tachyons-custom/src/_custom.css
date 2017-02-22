@@ -65,6 +65,15 @@ input:focus, textarea:focus {
   outline: none;
 }
 
+
+.thirds-card:nth-child(3){
+  clear: left;
+}
+
+.overflow {
+  overflow: hidden;
+
 .profile-picture {
   margin-bottom: -4%
+
 }

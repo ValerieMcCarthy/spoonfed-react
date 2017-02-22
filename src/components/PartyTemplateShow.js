@@ -67,61 +67,85 @@ class PartyTemplateShow extends Component {
       let userValidate = (template.user.id == sessionStorage.id)
       const templateID = template.id
        return(
-        <div className='row'>
-          <div className="col s6">
-          <h1> { template.title } </h1>
-          <p> Category: {template.theme_category} </p>
-          <h4> Description: {template.description} </h4>
-          <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
-          <h4> Party Template Creator: {template.user.name} </h4>
-          <br/>
-           <ul>
-           <h4> Party Template Items: </h4>
-            {template.items ? (template.items.map((temp, i) =>
-              <li key={i}><h5>{temp.name}</h5>
-                <p>{temp.description}</p>
-                <p>Category: {temp.item_category}</p>
-                <p>Category: {temp.default_price}</p>
-                {userValidate && <button onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete</button>}
-                <br/>
-                </li>
-              )) : null}
+
+        <div>
+
+
+        
 
 
 
-            </ul>
+          <div className="mw9 center ph3-ns cf">
+         
 
+              <div className="fl w-100 w-50-ns pa2">
+               
+                  <div>
+                    <div className='f-subheadline lh-title'> { template.title } </div>
+                    <p> Category: {template.theme_category} </p>
+                    <h4> Description: {template.description} </h4>
+                    <h4> Target Age Range: {template.min_age}-{template.max_age}</h4>
+                    <h4> Party Template Creator: {template.user.name} </h4>
+                    
 
-          <br/>
-           <div className="center">
-              <div className='col s3'>
-              <a href={`/parties/new?id=${template.id}`} className="waves-effect waves-light btn red-background">Clone</a>
+                    </div>
+                  
               </div>
 
-              <div className='col s3'>
-                <a href={`/parties/${template.id}/events/new`} className="waves-effect waves-light btn red-background">Make Event</a>
-               </div>
 
-              <div className='col s3'>
-              {userValidate ?
-                <a href={`/parties/${template.id}/edit`} className="waves-effect waves-light btn red-background">Edit</a>
-                : null}
-              </div>
-
-              <div className='col s3'>
-              {userValidate ? <a href={`/parties/${template.id}/delete`} className="waves-effect waves-light btn red-background" onClick={this.togglePortal}>Delete</a> : null}
-              </div>
+                <div className="fl w-100 w-50-ns pa2">
+            
+                    <div>
+                    {template.party_picture === '' ? null :
+                      <div>
+                        <img className='responsive-img' src={template.party_picture} />
+                      </div>}
+                    </div>
+                  {this.state.showPortal && <Portal handleClick={this.togglePortal} handleDelete={this.deleteRequest} templateId={template.id}/>}
+                </div>
             </div>
+            
+         <br/>
+                  <div className="mw9 center ph3-ns">
+                     <ul>
+                         <h4> Party Template Items: </h4>
+                          {template.items ? (template.items.map((temp, i) =>
+                            <li key={i}><h5>{temp.name}</h5>
+                              <p>{temp.description}</p>
+                              <p>Category: {temp.item_category}</p>
+                              <p>Category: {temp.default_price}</p>
+{userValidate && <button className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.handleDeleteItem.bind(temp.id, templateID)}>Delete Item</button>}
+                              <br/>
+                              </li>
+                            )) : null}
+                      </ul>
 
-          </div>
-          <div className="col s6">
-          {template.party_picture === '' ? null :
-            <div>
-              <img className='responsive-img' src={template.party_picture} />
-            </div>}
-          </div>
-        {this.state.showPortal && <Portal handleClick={this.togglePortal} handleDelete={this.deleteRequest} templateId={template.id}/>}
-        </div>
+
+                      <br/>
+                       <div className="center">
+                          <div className='col s3'>
+                          <a href={`/parties/new?id=${template.id}`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Clone</a>
+                          </div>
+
+                          <div className='col s3'>
+                            <a href={`/parties/${template.id}/events/new`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Make Event</a>
+                           </div>
+
+                          <div className='col s3'>
+                          {userValidate ?
+                            <a href={`/parties/${template.id}/edit`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple">Edit</a>
+                            : null}
+                          </div>
+
+                          <div className='col s3'>
+                          {userValidate ? <a href={`/parties/${template.id}/delete`} className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" onClick={this.togglePortal}>Delete</a> : null}
+                          </div>
+                        </div>
+                        </div>
+
+
+
+        </div>         
        )
       }
   }
