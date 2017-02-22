@@ -1,0 +1,57 @@
+.main-body {
+  background: white;
+
+  font-weight: 100;
+  box-shadow: 2px 2px 3px #222;
+}
+
+.header--nav {
+  min-height: 100vh;
+  background: #EEEEE6;
+}
+
+body {
+  background: #EEEEE6;
+  font-size: 2em;
+  font-family: 'avenir';
+  font-weight: 100;
+}
+
+img {
+  border-radius: 3px;
+}
+
+.header--link {
+  display: block;
+  text-decoration: none;
+  color: black;
+  transition: .5s color background ease-in;
+}
+
+.logo--link {
+  min-height: 30vh;
+  display: block;
+  border-bottom: 1px solid rgba(254,254,254, .7);
+}
+
+.header--link {
+    border-bottom: 1px solid rgba(254,254,254, .7);
+
+}
+
+.header--link:hover {
+  display: block;
+  text-decoration: none;
+  /*color: hotpink;*/
+  background: rgba(0,0,0,.07);
+
+}
+
+input[type="text"] {
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+input:focus {
+  outline: none;
+}

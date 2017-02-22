@@ -148,7 +148,7 @@ export default class PartyTemplateForm extends React.Component{
           <p><input placeholder='Minimum Age' type='text' onChange={this.handleOnChange.bind(this)} name='min_age' value={this.state.min_age}/></p>
           <p><input placeholder='Maximum Age' type='text' onChange={this.handleOnChange.bind(this)} name='max_age' value={this.state.max_age}/></p>
            
-           <button className="waves-effect waves-light btn red-background" onClick={this.handleAddNewItem.bind(this)}>Click to add more items</button>
+           // <button className="waves-effect waves-light btn red-background" onClick={this.handleAddNewItem.bind(this)}>Click to add more items</button>
 
           {this.state.items_attributes.map ((item, index) => {
             return (<PartyItemForm ref={'items_attributes'+index} key={index} id={index}/>)
@@ -172,7 +172,7 @@ export default class PartyTemplateForm extends React.Component{
                 <p>Drop an image or click to select a file to upload.</p>
               </Dropzone>
             </div>
-          <p><input className="waves-effect waves-light btn red-background" type='submit'/></p>
+          <p><button className="f3 ba button-yo f6 bg-white link hover-bg-light-purple br-pill ph3 pv2 mb2 dib light-purple hover-white light-purple">Save</button></p>
 
         </form>
          <div>
