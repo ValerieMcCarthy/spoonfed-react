@@ -84,31 +84,31 @@ class UserSignUp extends Component {
 			<h4 className='center'> Please create your new account here:</h4>
 				<form className='col s12' onSubmit={this.handleSubmit} >
 					<div className='row'>
-						<div className="input-field col s6">
-							<input ref='name' placeholder='Enter Name'/>
+						<div className="mv1 w-100">
+							<input ref='name' type="text" placeholder='Enter Name'/>
 						</div>
-						<div className="input-field col s6">
-							<input ref='email' placeholder='Enter Email'/>
+						<div className="mv1 w-100">
+							<input ref='email' type="email" placeholder='Enter Email'/>
 						</div>
-						<div className="input-field col s6">
+						<div className="mv1 w-100">
 							<input type='password' ref='userPassword' placeholder="Enter Password"/>
 						</div>
-						<div className="input-field col s6">
+						<div className="mv1 w-100">
 							<input type='password' ref='passwordConfirmation' placeholder="Confirm Password"/>
 						</div>
-						<div className="input-field col s6">
-							<input ref='zipcode' placeholder="Zip Code"/>
+						<div className="mv1 w-100">
+							<input ref='zipcode' type="text" placeholder="Zip Code"/>
 						</div>
-						<div className="input-field col s6">
-							<input ref='gender' placeholder="Gender"/>
+						<div className="mv1">
+							<input ref='gender' type='text' placeholder="Gender"/>
 						</div>
-						<div className="input-field col s6">
+						<div className="mv1">
 							<DatePicker placeholderText='Date of Birth' selected={this.state.date} onChange={this.handleChange.bind(this)} showMonthDropdown showYearDropdown/>
 						</div>
-						<div className="input-field col s6">
-							<input ref='bio' placeholder="Bio"/>
+						<div className="mv1">
+							<input ref='bio' type="text" placeholder="Bio"/>
 						</div>
-						<div className='FileUpload input-field col s6'>
+						<div className='FileUpload uploader f4 mv2'>
               				<Dropzone
                 				multiple={false}
                 				accept="image/*"
@@ -117,7 +117,7 @@ class UserSignUp extends Component {
               				</Dropzone>
             			</div>
 					</div>
-					<button type='submit'> Submit </button>
+					<button className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" type='submit'> Join Us </button>
 				</form>
 				<div>
               {this.state.uploadedFileCloudinaryUrl === '' ? null :
