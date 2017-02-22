@@ -168,6 +168,12 @@ export function updateCurrentTemplate(id){
 
 }
 
+export function updateCurrentParty(id){
+		return (dispatch) => {
+			axios.get(URL + `/parties/` + id).then(response => (dispatch(setTemplate(response)))).catch( (err) => dispatch(failedUpdateCurrentTemplate(err)))
+		}
+
+}
 function failedUpdateCurrentTemplate(err){
 	return {
 		type: 'GROWLER__SHOW',

@@ -57,9 +57,14 @@ textarea {
   box-shadow: 1px 1px 2px #ddd;
   border: 1px solid rgba(0,0,0,.2);
   padding: 5px;
+  text-decoration: 1px solid #ddd;
 
 }
 
 input:focus, textarea:focus {
   outline: none;
+}
+
+.profile-picture {
+  margin-bottom: -4%
 }
