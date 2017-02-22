@@ -2,6 +2,10 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
 import 'react-datepicker/dist/react-datepicker.css'
+import axios from 'axios'
+import { browserHistory } from 'react-router'
+
+axios.defaults.headers.common['AUTHORIZATION'] = sessionStorage.getItem('jwt')
 
 export default class Quiz extends React.Component {
 
@@ -17,7 +21,7 @@ export default class Quiz extends React.Component {
      {
       question: 'How many people are you hosting?',
       hint: 'Are you feeling intimate or like the belle of the ball?',
-      answer: 'num_of_guests'
+      answer: 'num_attendees'
      },
      {
       question: 'When is the magic happening?',
@@ -37,7 +41,7 @@ export default class Quiz extends React.Component {
       date: moment(),
       questions: questions,
       headline: "Let's get cracking!",
-      items: ['','','','']
+      items: [{name: ''},{name: ''},{name: ''},{name: ''}]
     }
   }
 
@@ -61,20 +65,29 @@ export default class Quiz extends React.Component {
       buttonText: 'Onwards!',
       planningStage: true
     })
+  }
+
+  if (this.state.step === 2 ) {
+    const { location, num_attendees, items} = this.state,
+          item_categories_attributes  = items
+
+    axios.post('http://localhost:3000/api/v1/parties', { party: {location, num_attendees, item_categories_attributes} } )
 
   }
+
+  
 }
 
 
 addToItems(event, index){
   const items = this.state.items
-  items[index] = event.target.value
+  items[index] = {name: event.target.value}
 
   this.setState( { items: items } )
 }
 
 addItems(){
-  this.setState( {items: this.state.items.concat('')})
+  this.setState( {items: this.state.items.concat({name: ''})})
 }
 
  updateField(inputKey) {
@@ -113,7 +126,7 @@ addItems(){
             <p className="f6 lh-copy i mt0 pt0 mid-gray"> Examples to spark the imagination: caterer, dj, florist, cat wrangler, pony brigade, cake maker extraordinare</p>
             <form className="w-100" onSubmit={this.onSubmit} >
             {this.state.items.map( (item, index) => 
-               <input className="w-15-ns mh3" key={index} type="text" value={this.state.items[index]} onChange={event => this.addToItems(event, index)} /> )}
+               <input className="w-15-ns mh3" key={index} type="text" value={this.state.items[index].name} onChange={event => this.addToItems(event, index)} /> )}
             
            
         </form>

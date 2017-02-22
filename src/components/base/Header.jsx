@@ -45,7 +45,7 @@ class Header extends React.Component {
       },
       {
         title: 'Sign Up',
-        path: '/tachyoned/signup',
+        path: '/signup',
         loggedOut: true
       },
       {
