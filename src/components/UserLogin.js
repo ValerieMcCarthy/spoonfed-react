@@ -24,13 +24,13 @@ class UserLogin extends Component {
 				<form className='col s12' onSubmit={this.handleSubmit} >
 				<div className='row'>
 					<div className="input-field col s6">
-						<input ref='email' placeholder='Enter Email'/>
+						<input ref='email' type='text' placeholder='Enter Email'/>
 					</div>
 					<div className="input-field col s6">
 						<input type='password' ref='userPassword' placeholder="Enter Password"/>
 					</div>
 					</div>
-					<button type='submit'> Submit </button>
+					<button className="f2 ba button-yo f6 link hover-bg-light-purple bg-white br-pill ph3 ml2 pv2 mb2 dib light-purple hover-white light-purple" type='submit'> Submit </button>
 				</form>
 			</div>
 

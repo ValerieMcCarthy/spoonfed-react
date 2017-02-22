@@ -42,35 +42,41 @@ class PartyTemplateList extends React.Component{
     return(
       <div className='partyTemplateListPage'>
 
-        <h3 className='center'> Delightful parties you could be throwing</h3>
-        <SearchInput className={searchStyle} onChange={this.updateSearch} />
+        <h3 className='tc'> Delightful parties you could be throwing</h3>
+        <SearchInput  type='text' className={searchStyle} onChange={this.updateSearch} />
       
-      <div className="row ">
-        { filtered.map( (template, index) => {
-        return (
-      
-
-        <div className="col s4 key={index}">
-          <div className="card medium">
-            <div className="card-image">
-              <img src={template.party_picture} />
-
-              <span className="card-title">{template.title}</span>
-            </div>
-            <div className='card-content'>
-              <p><div className="thick">{template.theme_category}</div>
-               {template.description}</p>
-            </div>
-            <div className="card-action grey lighten-2">
-                <a href={`/parties/${template.id}`}>Learn More</a>
-                <a className= 'right' href={`/parties/new?id=${template.id}`}>Clone</a>
-                
+        <div className="mw9 center ph3-ns">
+          <div className="cf ph2-ns ">
+            { filtered.map( (template, index) => {
+            return (
+                <a href={`/parties/${template.id}`}>
+                <div className="fl w-100 w-third-ns pa2 dib v-top thirds-card">
+                  <div className="bg-white pv4">
+                       <article >
+                       <div className='h5 overflow'>
+                          <img src={template.party_picture}/>
+                       </div>
+                            <div className="pa2 ph3-ns pb3-ns">
+                            <div className="dt w-100 mt1">
+                            <div className="dtc">
+                              <h1 className="f5 f4-ns mv0">{template.title}</h1>
+                            </div>
+                            <div className="dtc tr">
+                              < h2 className="f5 mv0"></h2>
+                          </div>
+                          </div>
+                          <p className="f6 lh-copy measure mt2 mid-gray">
+                          {template.description}
+                          </p>
+                        </div>
+                      </article>
+                  </div>
+                </div>
+                </a>
+                )
+                })}
               </div>
             </div>
-          </div> )
-          } )}
-        </div>
-     
        {this.props.children}
       </div>
       )
