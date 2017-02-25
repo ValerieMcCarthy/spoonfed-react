@@ -31,7 +31,10 @@ Both servers need to be running on your local environment for this app to functi
 
 ## Team
 
-[Valerie McCarthy](https://github.com/ValerieMcCarthy)
-[Ashley Robinson](https://github.com/howers)
-[Frankie Ferreira](https://github.com/FrankieMFerreira)
+* [Valerie McCarthy](https://github.com/ValerieMcCarthy)
+
+* [Ashley Robinson](https://github.com/howers)
+
+* [Frankie Ferreira](https://github.com/FrankieMFerreira)
+
 
